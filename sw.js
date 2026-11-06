@@ -1,9 +1,10 @@
 // Saltwater Rig & Knot Guide: offline cache
 // Bump the version number whenever you change index.html so phones pick up the update.
-const CACHE = "saltyrig-v4";
+const CACHE = "saltyrig-v7";
 const ASSETS = [
     "./",
     "./index.html",
+    "./regulations.json",
     "./manifest.json",
     "./icon-192.png",
     "./icon-512.png",

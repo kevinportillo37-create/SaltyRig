@@ -1,0 +1,280 @@
+{
+    "title": "Texas Saltwater Limits",
+    "validFrom": "2026-09-01",
+    "validThrough": "2027-08-31",
+    "lastChecked": "2026-11-06",
+    "sourceUrl": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/",
+    "measureUrl": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/measurement-tips",
+    "generalRules": [
+        "You need a Texas fishing license with a saltwater endorsement.",
+        "These limits cover Texas waters out to 9 nautical miles, plus fish caught farther out and landed in Texas. Federal rules also apply past 9 nautical miles for some species.",
+        "Possession limit is twice the daily bag unless a fish's page says otherwise.",
+        "Fish that TPWD doesn't list have no state bag, possession, or size limits.",
+        "TPWD can change rules mid-season, like closures after a hard freeze. Check their site before you go."
+    ],
+    "measuring": [
+        "Lay the fish on its side with its mouth closed.",
+        "Soft tail: squeeze the tail fin together. Hard tail: turn the tail to stretch it to its longest.",
+        "Measure in a straight line from the tip of the snout to the farthest tip of the tail."
+    ],
+    "groups": [
+        { "id": "bay", "name": "Bay & Marsh" },
+        { "id": "surf", "name": "Surf, Jetty & Pier" },
+        { "id": "offshore", "name": "Nearshore & Offshore" }
+    ],
+    "fish": [
+        {
+            "id": "red-drum", "name": "Redfish", "aka": "Red drum", "group": "bay",
+            "minIn": 20, "maxIn": 28, "bag": 3, "possession": 6,
+            "overMax": { "aboveIn": 28, "note": "Over the slot. Keep it only with your Red Drum Tag or Bonus Red Drum Tag. Otherwise, release it." },
+            "rules": [
+                "Slot fish: 20 to 28 inches.",
+                "Per license year, you can keep one red over 28 inches with a Red Drum Tag, plus one more with a Bonus Red Drum Tag. Tagged fish don't count toward your daily bag.",
+                "Digital tags are reported in the Texas Hunt & Fish app instead of attached."
+            ],
+            "idTips": ["One or more black spots near the tail", "Bronze to copper color", "Mouth points down for feeding on the bottom"],
+            "where": "Shallow flats, marsh edges, and oyster reefs. Big bull reds run the surf and passes in the fall.",
+            "rigs": ["popping-cork", "gold-spoon", "weedless-plastic", "freeline-shrimp", "fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/drum-bag-length-limits"
+        },
+        {
+            "id": "spotted-seatrout", "name": "Speckled Trout", "aka": "Spotted seatrout", "group": "bay",
+            "minIn": 15, "maxIn": 20, "bag": 3, "possession": 6,
+            "overMax": { "aboveIn": 28, "note": "Over 28 inches. Keep it only with your Spotted Seatrout Tag or Bonus Spotted Seatrout Tag. Otherwise, release it." },
+            "rules": [
+                "Keep fish from 15 to 20 inches. Fish from 20 to 28 inches go back.",
+                "Per license year, you can keep one trout over 28 inches with a Spotted Seatrout Tag, plus one more with a Bonus Spotted Seatrout Tag. Tagged fish don't count toward your daily bag."
+            ],
+            "idTips": ["Black spots on the back, back fin, and tail", "Silver-gray with a darker back", "Two big fangs at the tip of the upper jaw"],
+            "where": "Grass flats, guts, and shell in the bay. Deeper channels when it's cold.",
+            "rigs": ["popping-cork", "freeline-shrimp", "jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/seatrout-bag-length-limits/"
+        },
+        {
+            "id": "southern-flounder", "name": "Flounder", "aka": "Southern flounder", "group": "bay",
+            "minIn": 15, "maxIn": null, "bag": 5, "possession": 5,
+            "closures": [{ "from": "11-01", "to": "12-14", "note": "Flounder season is closed Nov 1 through Dec 14 (bag limit 0)." }],
+            "rules": [
+                "Closed every year from Nov 1 through Dec 14. Release every flounder during that time.",
+                "The rest of the year: 5 per day, 15 inch minimum.",
+                "Possession limit equals the daily bag (5), not double."
+            ],
+            "idTips": ["Flat, with both eyes on the top side", "Brown with blurry dark and light blotches, not three sharp eyespots like a Gulf flounder", "Big mouth with sharp teeth"],
+            "where": "Sandy or muddy bottom near drop-offs, marsh drains, and pilings. They lie still and ambush bait.",
+            "rigs": ["jig-lure", "carolina-rig", "weedless-plastic"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/flounder-bag-length-limits"
+        },
+        {
+            "id": "black-drum", "name": "Black Drum", "aka": "", "group": "bay",
+            "minIn": 14, "maxIn": 30, "bag": 5, "possession": 10,
+            "overMax": { "aboveIn": 52, "note": "Over 52 inches. You may keep one this size per day, and it counts toward your daily bag." },
+            "rules": [
+                "Keep fish from 14 to 30 inches.",
+                "You may also keep one black drum over 52 inches per day. It counts toward your bag and possession limits."
+            ],
+            "idTips": ["Tall, arched back", "Rows of short whiskers under the chin", "Young ones have 4 or 5 dark vertical bars. No tail spot."],
+            "where": "Channels, piers, jetties, and oyster reefs. Shrimp, crab, and cut bait on the bottom.",
+            "rigs": ["carolina-rig", "high-low", "fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/drum-bag-length-limits"
+        },
+        {
+            "id": "sheepshead", "name": "Sheepshead", "aka": "", "group": "bay",
+            "minIn": 15, "maxIn": null, "bag": 5, "possession": 10,
+            "rules": ["15 inch minimum, no maximum."],
+            "idTips": ["5 to 7 bold black vertical bars", "Teeth that look like human teeth", "Sharp spines on the back fin"],
+            "where": "Pilings, jetties, docks, and oyster reefs. Small hooks with shrimp or fiddler crab.",
+            "rigs": ["high-low"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/sheepshead-bag-length-limits"
+        },
+        {
+            "id": "sand-trout", "name": "Sand Trout", "aka": "Sand seatrout", "group": "bay",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["Pale tan to silver with no spots", "Shaped like a speckled trout", "Yellowish back and fins"],
+            "where": "Deeper bay channels and passes, often in schools in winter.",
+            "rigs": ["high-low", "jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "croaker", "name": "Atlantic Croaker", "aka": "", "group": "bay",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["Silver-bronze with wavy brassy streaks on the back", "Small whiskers on the chin", "Makes a croaking sound when caught"],
+            "where": "Muddy bay bottoms, channels, and piers. Also a popular live bait for trout.",
+            "rigs": ["high-low"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "gafftopsail", "name": "Gafftopsail Catfish", "aka": "Gafftop", "group": "bay",
+            "minIn": 14, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["No bag limit, but the minimum length is 14 inches.", "Fin spines can cause painful wounds. Handle carefully."],
+            "idTips": ["Long fleshy streamers on the back and side fins", "Two long, flat whiskers at the mouth", "Very slimy coat"],
+            "where": "Bays and surf in warm months. Hits shrimp and cut bait.",
+            "rigs": ["carolina-rig", "fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/catfish-bag-length-limits-saltwater/"
+        },
+        {
+            "id": "hardhead", "name": "Hardhead Catfish", "aka": "", "group": "bay",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit.", "Fin spines can cause painful wounds. Handle carefully."],
+            "idTips": ["Several short whiskers, no long fin streamers", "Gray back, white belly", "Hard bony plate on top of the head"],
+            "where": "Nearly everywhere in the bay, usually stealing your bait.",
+            "rigs": [],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "mullet", "name": "Striped Mullet", "aka": "All mullet", "group": "bay",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "seasonal": [{ "from": "10-01", "to": "01-31", "maxIn": 12, "note": "October through January, mullet over 12 inches can't be kept or held on a boat." }],
+            "rules": ["No bag or size limits February through September.", "October through January, you can't keep mullet over 12 inches."],
+            "idTips": ["Torpedo shape with a blunt head", "Dark stripes running along the sides", "Two small, widely spaced back fins"],
+            "where": "Schools on flats and in the marsh. Usually caught with a cast net for bait.",
+            "rigs": [],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/mullet-bag-length-limits"
+        },
+        {
+            "id": "snook", "name": "Snook", "aka": "Common snook", "group": "bay",
+            "minIn": 24, "maxIn": 28, "bag": 1, "possession": 2,
+            "rules": ["Slot fish: 24 to 28 inches, 1 per day."],
+            "idTips": ["Bold black line down the side", "Lower jaw sticks out past the upper", "Sloping forehead and yellowish fins"],
+            "where": "Mostly the lower coast. Rare around Galveston.",
+            "rigs": ["weedless-plastic", "jig-lure", "freeline-shrimp"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/snook-bag-length-limits/"
+        },
+        {
+            "id": "whiting", "name": "Whiting", "aka": "Southern kingfish", "group": "surf",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["One short whisker on the chin", "Slim and silvery-gray with faint dusky bars", "Small mouth set under the snout"],
+            "where": "Surf troughs along the beach and bay passes. Shrimp or sand fleas on the bottom.",
+            "rigs": ["high-low", "fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "spanish-mackerel", "name": "Spanish Mackerel", "aka": "", "group": "surf",
+            "minIn": 14, "maxIn": null, "bag": 15, "possession": 30,
+            "rules": ["14 inch minimum, 15 per day."],
+            "idTips": ["Gold or yellow oval spots on the sides", "Long, slim, silver body with a forked tail", "Sharp teeth"],
+            "where": "Jetties and surf in warm months, chasing bait. Small spoons and jigs with a fast retrieve.",
+            "rigs": ["gold-spoon", "jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/mackerel-bag-length-limits"
+        },
+        {
+            "id": "pompano", "name": "Florida Pompano", "aka": "", "group": "surf",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["Deep, flat, silver body", "Yellow belly and fins", "Blunt head and deeply forked tail"],
+            "where": "Surf troughs, especially in spring and fall. Sand fleas or shrimp on the bottom.",
+            "rigs": ["high-low", "fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "jack-crevalle", "name": "Jack Crevalle", "aka": "", "group": "surf",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["Steep, blunt forehead", "Black spot on the gill cover and on the side fin", "Hard ridge of scales near the tail"],
+            "where": "Jetties, passes, and surf in summer. Hard fighters, often in big schools.",
+            "rigs": ["gold-spoon", "jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "bluefish", "name": "Bluefish", "aka": "", "group": "surf",
+            "minIn": null, "maxIn": null, "bag": null, "possession": null,
+            "rules": ["Not on TPWD's limit list, so there's no state bag or size limit."],
+            "idTips": ["Blue-green back and silver sides", "Big mouth full of sharp teeth", "Dark blotch at the base of the side fin"],
+            "where": "Surf and jetties. Watch your fingers.",
+            "rigs": ["gold-spoon", "jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/"
+        },
+        {
+            "id": "blacktip-shark", "name": "Blacktip Shark", "aka": "Also sharpnose and bonnethead", "group": "surf",
+            "minIn": 24, "maxIn": null, "bag": 1, "possession": 2,
+            "rules": [
+                "1 shark per person per day, all kinds combined.",
+                "Blacktip, Atlantic sharpnose, and bonnethead: 24 inch minimum. Most other legal sharks: 64 inches. Hammerheads: 99 inches.",
+                "You must use non-offset, non-stainless steel circle hooks when fishing for sharks.",
+                "Many sharks are catch-and-release only, including sandbar, dusky, sand tiger, and silky. If you can't tell what it is, release it."
+            ],
+            "idTips": ["Black tips on the side fins and lower tail", "Pointed snout", "Faint white band along the side"],
+            "where": "Surf and passes in summer. Fish-finder rig with cut bait.",
+            "rigs": ["fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/shark-bag-length-limits"
+        },
+        {
+            "id": "bull-shark", "name": "Bull Shark", "aka": "", "group": "surf",
+            "minIn": 64, "maxIn": null, "bag": 1, "possession": 2,
+            "rules": [
+                "Falls under other allowed sharks: 64 inch minimum.",
+                "Counts toward the 1 shark per person per day limit.",
+                "You must use non-offset, non-stainless steel circle hooks when fishing for sharks."
+            ],
+            "idTips": ["Stocky gray body", "Short, wide, blunt snout", "Adults have no black fin tips"],
+            "where": "Bays, passes, and surf in warm water. Dangerous to handle.",
+            "rigs": ["fish-finder"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/shark-bag-length-limits"
+        },
+        {
+            "id": "tarpon", "name": "Tarpon", "aka": "", "group": "surf",
+            "minIn": 85, "maxIn": null, "bag": 1, "possession": 2,
+            "rules": ["85 inch minimum, so nearly every tarpon gets released."],
+            "idTips": ["Huge, shiny silver scales", "Upturned mouth", "Long thread trailing from the back fin"],
+            "where": "Passes, jetties, and nearshore water in summer.",
+            "rigs": [],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/tarpon-bag-length-limits"
+        },
+        {
+            "id": "king-mackerel", "name": "King Mackerel", "aka": "Kingfish", "group": "offshore",
+            "minIn": 27, "maxIn": null, "bag": 3, "possession": 6,
+            "rules": ["27 inch minimum, 3 per day."],
+            "idTips": ["Long, slim, gray-silver. Adults have no spots.", "Side line dips sharply under the second back fin", "Sharp teeth"],
+            "where": "Nearshore rigs and reefs in warm months.",
+            "rigs": [],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/mackerel-bag-length-limits"
+        },
+        {
+            "id": "cobia", "name": "Cobia", "aka": "Ling", "group": "offshore",
+            "minIn": 40, "maxIn": null, "bag": 1, "possession": 2,
+            "rules": ["40 inch minimum, 1 per day."],
+            "idTips": ["Long dark-brown body with a dark stripe along the side", "Broad, flat head", "Row of short separate spines instead of a tall front back fin"],
+            "where": "Near buoys, rigs, and floating debris, often following rays or sharks.",
+            "rigs": ["jig-lure"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/cobia-bag-length-limits"
+        },
+        {
+            "id": "red-snapper", "name": "Red Snapper", "aka": "", "group": "offshore",
+            "minIn": 15, "maxIn": null, "bag": 4, "possession": 8,
+            "checkNote": "Based on Texas state-water rules. In federal waters, the minimum is 16 inches.",
+            "rules": [
+                "Texas state waters (out to 9 nautical miles): open year-round, 4 per day, 15 inch minimum.",
+                "Federal waters: 2 per day, 16 inch minimum, and a season that changes each year. The 2026 federal season opened May 22. Check TPWD before you go.",
+                "Use a circle hook with natural bait, and a venting tool or descending device on fish with barotrauma."
+            ],
+            "idTips": ["Red-pink all over with a red eye", "Pointed snout", "Pointed anal fin"],
+            "where": "Offshore reefs, rigs, and wrecks.",
+            "rigs": ["carolina-rig"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/snapper-bag-length-limits"
+        },
+        {
+            "id": "tripletail", "name": "Tripletail", "aka": "", "group": "offshore",
+            "minIn": 17, "maxIn": null, "bag": 3, "possession": 6,
+            "rules": ["17 inch minimum, 3 per day."],
+            "idTips": ["Rounded back and belly fins that look like three tails", "Mottled brown to yellow", "Floats on its side near structure"],
+            "where": "Near buoys, channel markers, and floating weeds. Sometimes in the bay.",
+            "rigs": ["freeline-shrimp", "popping-cork"],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/tripletail-bag-length-limits"
+        },
+        {
+            "id": "amberjack", "name": "Greater Amberjack", "aka": "AJ", "group": "offshore",
+            "minIn": 38, "maxIn": null, "bag": 1, "possession": 2,
+            "rules": [
+                "38 inch minimum, 1 per day.",
+                "The 2026 federal-water season ran Sept 1 to Oct 14. Check before fishing past 9 nautical miles.",
+                "Use a venting tool or descending device on fish with barotrauma."
+            ],
+            "idTips": ["Dark diagonal band from the snout through the eye", "Amber stripe along the side", "Olive-brown back and forked tail"],
+            "where": "Offshore rigs and reefs.",
+            "rigs": [],
+            "source": "https://tpwd.texas.gov/regulations/outdoor-annual/fishing/saltwater-fishing/bag-length-limits/amberjack-bag-length-limits"
+        }
+    ]
+}
