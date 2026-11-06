@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saltwater Rig & Knot Guide</title>
+
+    <!-- PWA "Add to Home Screen" support (needs manifest.json, sw.js and the icons in the same folder) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f2542d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SaltyRig">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="icon-192.png">
+
+    <style>
+        /* Bright "sunny dock" theme: cream and white with coral (rigs) and teal (knots) */
+        :root {
+            --bg-main: #fff8ef;       /* warm cream page */
+            --bg-card: #ffffff;
+            --border: #f1e3d0;
+            --accent: #d63c1e;        /* coral: buttons, rigs */
+            --accent-bright: #f2542d;
+            --accent-soft: #ffe8df;
+            --teal: #0f766e;          /* teal: knots, links */
+            --teal-bright: #14b8a6;
+            --teal-soft: #e3f4f1;
+            --text-main: #1f2937;
+            --text-muted: #6b5e50;
+            --success: #15803d;
+            --picture-bg: #eef7f6;    /* must match COL.bg in the step pictures */
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); padding: 16px; display: flex; justify-content: center; }
+        button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        .app-container { width: 100%; max-width: 480px; min-height: 90vh; display: flex; flex-direction: column; }
+        header { text-align: center; padding: 22px 16px; border-radius: 18px; color: #ffffff; background: linear-gradient(135deg, #ff8a3d 0%, #f2542d 55%, #d63c1e 100%); box-shadow: 0 6px 18px rgba(214, 60, 30, 0.25); }
+        header h1 { font-size: 1.9rem; letter-spacing: 0.5px; }
+        header p { font-size: 0.9rem; margin-top: 4px; font-weight: 600; opacity: 0.95; }
+        .filter-bar { display: flex; gap: 8px; overflow-x: auto; padding: 16px 0 2px; scrollbar-width: none; }
+        .filter-bar::-webkit-scrollbar { display: none; }
+        .filter-chip { flex: 0 0 auto; padding: 9px 15px; border-radius: 20px; border: 2px solid var(--border); background-color: var(--bg-card); color: var(--text-main); font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+        .filter-chip.active { background-color: var(--accent); border-color: var(--accent); color: #ffffff; }
+        .section-title { font-size: 1rem; margin: 22px 0 10px 0; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .menu-btn { background-color: var(--bg-card); border: 1px solid var(--border); border-left: 6px solid var(--accent-bright); padding: 16px 18px; border-radius: 14px; color: var(--text-main); font-size: 1.1rem; font-weight: bold; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: background 0.2s; box-shadow: 0 2px 6px rgba(107, 94, 80, 0.08); }
+        .menu-btn:active { background-color: var(--accent-soft); }
+        #knotMenu .menu-btn { border-left-color: var(--teal-bright); }
+        #knotMenu .menu-btn:active { background-color: var(--teal-soft); }
+        .menu-btn .menu-text { display: flex; flex-direction: column; gap: 4px; }
+        .menu-btn .menu-sub { font-size: 0.8rem; font-weight: normal; color: var(--text-muted); }
+        .menu-btn span.tag { font-size: 0.75rem; background-color: var(--accent-soft); padding: 4px 9px; border-radius: 20px; color: #b4321a; white-space: nowrap; }
+        #knotMenu .menu-btn span.tag { background-color: var(--teal-soft); color: var(--teal); }
+        .view { display: none; flex-direction: column; flex-grow: 1; }
+        .view.active { display: flex; }
+        .back-nav { display: flex; align-items: center; background: none; border: none; color: var(--teal); font-size: 1rem; font-weight: bold; padding: 8px 0; cursor: pointer; margin-bottom: 6px; width: fit-content; text-align: left; }
+        .card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 16px 18px; flex-grow: 1; display: flex; flex-direction: column; box-shadow: 0 4px 14px rgba(107, 94, 80, 0.10); }
+        .card h2 { font-size: 1.3rem; margin-bottom: 6px; color: var(--text-main); }
+        .subtitle { font-size: 0.9rem; color: var(--accent); margin-bottom: 12px; font-weight: 700; }
+        .materials-box { background-color: var(--teal-soft); border-left: 4px solid var(--teal-bright); padding: 10px 12px; border-radius: 4px 12px 12px 4px; margin-bottom: 12px; }
+        .materials-box h4 { font-size: 0.85rem; color: var(--teal); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .materials-box p { font-size: 0.9rem; color: var(--text-main); line-height: 1.4; }
+        .knot-links { display: none; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 14px; }
+        .knot-links.visible { display: flex; }
+        .knot-links .label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-right: 2px; font-weight: 700; }
+        .knot-chip { background-color: var(--bg-card); border: 2px solid var(--teal-bright); color: var(--teal); font-size: 0.8rem; font-weight: 700; padding: 5px 10px; border-radius: 20px; cursor: pointer; }
+        .knot-chip:active { background-color: var(--teal-soft); }
+        .progress { height: 8px; background-color: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
+        .progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, #ff8a3d, var(--accent-bright)); transition: width 0.25s ease; }
+        .progress-fill.complete { background: var(--success); }
+        .step-progress { font-size: 0.85rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .step-visual { background-color: var(--picture-bg); border: 1px solid #d5ecea; border-radius: 14px; margin-bottom: 12px; }
+        .step-visual svg { display: block; width: 100%; height: auto; }
+        .step-visual:empty { display: none; }
+        .step-text { font-size: 1.15rem; line-height: 1.5; color: var(--text-main); flex-grow: 1; display: flex; align-items: center; min-height: 80px; }
+        .swipe-hint { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 8px; }
+        .controls { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; margin-top: 10px; }
+        .btn { padding: 16px; border-radius: 14px; font-size: 1.1rem; font-weight: bold; border: none; cursor: pointer; text-align: center; }
+        .btn-secondary { background-color: var(--bg-card); border: 2px solid var(--border); color: var(--text-main); }
+        .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-primary { background-color: var(--accent); color: white; box-shadow: 0 3px 10px rgba(214, 60, 30, 0.3); }
+        .btn-primary:active { background-color: #b4321a; }
+        .btn-success { background-color: var(--success); color: white; box-shadow: 0 3px 10px rgba(21, 128, 61, 0.3); }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- HOME DASHBOARD -->
+    <div id="homeView" class="view active">
+        <header>
+            <h1>SaltyRig</h1>
+            <p>Saltwater Rig &amp; Knot Guide · Works Offline</p>
+        </header>
+
+        <!-- Tap a species to see only its rigs and the knots they use -->
+        <div class="filter-bar" id="filterBar" role="group" aria-label="Filter by species"></div>
+
+        <div class="section-title" id="rigSectionTitle">Popular Rigs</div>
+        <div class="menu-grid" id="rigMenu"></div>
+
+        <div class="section-title" id="knotSectionTitle">Essential Knots</div>
+        <div class="menu-grid" id="knotMenu"></div>
+    </div>
+
+    <!-- INTERACTIVE GUIDE SCREEN -->
+    <div id="guideView" class="view">
+        <button class="back-nav" id="backNav" onclick="goBack()">← Back to Dashboard</button>
+        <div class="card" id="guideCard">
+            <h2 id="guideTitle">Rig Name</h2>
+            <div class="subtitle" id="guideType">Category</div>
+
+            <div class="materials-box" id="materialsContainer">
+                <h4 id="materialsHeading">Required Gear</h4>
+                <p id="materialsList">Materials list goes here...</p>
+            </div>
+
+            <!-- Rigs only: tap a knot to open its guide, then come back to the same step -->
+            <div class="knot-links" id="knotLinks"></div>
+
+            <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="step-progress" id="stepCounter">Step 1 of 4</div>
+            <div class="step-visual" id="stepVisual"></div>
+            <div class="step-text" id="stepDescription" aria-live="polite">Step instructional content goes here...</div>
+
+            <div class="swipe-hint">Swipe left or right to change steps</div>
+            <div class="controls">
+                <button class="btn btn-secondary" id="backBtn" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Comprehensive Local Data Strategy (No external API needed)
+    const appData = {
+        rigs: [
+            {
+                id: "popping-cork",
+                title: "Popping Cork Rig",
+                subtitle: "Targeting: Speckled Trout & Redfish",
+                species: ["trout", "redfish"],
+                materials: "Popping cork, 20-30lb fluorocarbon leader, 1/16oz or 1/8oz jighead (or live bait hook), soft plastic lure or live shrimp.",
+                knots: ["uni-knot", "palomar-knot"],
+                steps: [
+                    "Tie your braided mainline directly to the top metal loop of the popping cork using a Uni Knot.",
+                    "Cut an 18 to 24-inch section of fluorocarbon leader. Go up to about 3 feet in deeper water so the bait hangs just above the bottom.",
+                    "Tie one end of the fluorocarbon leader to the bottom swivel of the popping cork using a Uni or Palomar knot.",
+                    "Tie your jighead or live bait hook to the remaining open end of the fluorocarbon leader.",
+                    "Thread your soft plastic bait onto the jighead straight, or hook a live shrimp under the horn on its head, staying clear of the dark spot so it stays alive."
+                ]
+            },
+            {
+                id: "jig-lure",
+                title: "Leadhead Jig & Soft Plastic",
+                subtitle: "Targeting: Flounder, Trout, & Redfish",
+                species: ["flounder", "trout", "redfish"],
+                materials: "20lb fluorocarbon leader, 1/8oz to 1/4oz leadhead jig, paddle tail or straight tail soft plastic (e.g., MirrOlure Lil' John).",
+                knots: ["double-uni", "uni-knot", "loop-knot"],
+                steps: [
+                    "Connect your braided mainline to a 20-to-30 inch fluorocarbon leader using a Double Uni Knot.",
+                    "Tie the open end of the fluorocarbon leader to the eyelet of the leadhead jig using a snug Uni Knot or a non-slip loop knot for extra action.",
+                    "Take your soft plastic lure and measure it alongside the jighead to see exactly where the hook point needs to exit the body.",
+                    "Insert the hook point directly through the center of the nose of the bait, feeding it down the body.",
+                    "Push the hook point straight out of the top back of the bait, sliding the nose up firmly over the lead collar keeper. Ensure the lure sits perfectly straight."
+                ]
+            },
+            {
+                id: "carolina-rig",
+                title: "Carolina / Bottom Rig",
+                subtitle: "Targeting: Drum, Flounder, & Surf Species",
+                species: ["drum", "flounder", "redfish"],
+                materials: "Egg sinker (1/2oz to 1oz), plastic bead, barrel swivel, 20lb fluorocarbon leader, circle hook.",
+                knots: ["uni-knot", "palomar-knot"],
+                steps: [
+                    "Slide your braided mainline through the hole of an egg sinker.",
+                    "Slide a small plastic bead onto the mainline immediately right after the egg sinker to protect your knot from the heavy weight.",
+                    "Tie your mainline firmly to one side of a barrel swivel using a Uni Knot.",
+                    "Cut a 12 to 24-inch piece of fluorocarbon leader and tie it to the opposite eyelet of the barrel swivel.",
+                    "Tie your circle hook to the remaining open end of the leader using a Palomar or Uni knot."
+                ]
+            },
+            {
+                id: "freeline-shrimp",
+                title: "Free-Lined Live Shrimp",
+                subtitle: "Targeting: Speckled Trout & Redfish",
+                species: ["trout", "redfish"],
+                materials: "20lb fluorocarbon leader, #1 to 1/0 live bait or Kahle hook, optional small split shot, live shrimp.",
+                knots: ["double-uni", "fg-knot", "uni-knot", "palomar-knot"],
+                steps: [
+                    "Connect your braid to a 24 to 30-inch fluorocarbon leader with a Double Uni or FG Knot.",
+                    "Tie a live bait hook to the end of the leader with a Uni or Palomar knot.",
+                    "In current or deeper water, pinch a small split shot onto the leader about 12 inches above the hook. Skip it in shallow, calm water.",
+                    "Hook the shrimp under the horn on its head, staying clear of the dark spot so it stays lively.",
+                    "Cast up-current and let the shrimp drift naturally, keeping just enough tension on the line to feel the bite."
+                ]
+            },
+            {
+                id: "weedless-plastic",
+                title: "Weedless Soft Plastic",
+                subtitle: "Targeting: Redfish & Flounder in Grass and Shell",
+                species: ["redfish", "flounder"],
+                materials: "20lb fluorocarbon leader, 3/0 to 4/0 weighted swimbait hook (1/16 to 1/8oz), 4 to 5-inch paddle tail or jerk bait.",
+                knots: ["double-uni", "fg-knot", "palomar-knot", "san-diego-jam"],
+                steps: [
+                    "Connect your braid to a 24 to 30-inch fluorocarbon leader with a Double Uni or FG Knot.",
+                    "Tie the weighted swimbait hook to the leader with a Palomar or San Diego Jam knot.",
+                    "With the bait sitting in the hook gap, push the hook point about 1/4 inch into the center of the nose and bring it out the bottom.",
+                    "Slide the bait up until the nose is snug at the eye, then turn the hook so the point faces the bait's belly.",
+                    "Push the point up through the belly and out the back, then tuck the tip just under the skin so it slides through grass without snagging."
+                ]
+            },
+            {
+                id: "gold-spoon",
+                title: "Gold Spoon",
+                subtitle: "Targeting: Redfish",
+                species: ["redfish"],
+                materials: "1/4 to 1/2oz gold weedless spoon, small black barrel swivel, 20lb fluorocarbon leader.",
+                knots: ["uni-knot", "loop-knot"],
+                steps: [
+                    "Tie your braid to one eye of a small black barrel swivel with a Uni Knot. The swivel keeps the spoon from twisting your line.",
+                    "Tie 18 to 24 inches of fluorocarbon leader to the other eye of the swivel with a Uni Knot.",
+                    "Tie the spoon to the end of the leader. Use its split ring if it has one; if not, use a Non-Slip Loop Knot so it can wobble freely.",
+                    "Check that the weedguard sits just over the hook point and the spoon hangs straight.",
+                    "Cast past the fish and reel slowly and steadily so the spoon wobbles and flashes just under the surface."
+                ]
+            },
+            {
+                id: "fish-finder",
+                title: "Fish-Finder Surf Rig",
+                subtitle: "Targeting: Bull Redfish & Black Drum in the Surf",
+                species: ["redfish", "drum"],
+                materials: "Sinker slide, 3 to 5oz pyramid or spider sinker, plastic bead, heavy barrel swivel, 40 to 60lb leader, 7/0 to 9/0 circle hook, cut mullet or crab.",
+                knots: ["uni-knot", "snell-knot"],
+                steps: [
+                    "Slide a sinker slide onto your mainline and clip a pyramid or spider sinker to it.",
+                    "Slide on a plastic bead to protect the knot from the sinker.",
+                    "Tie your mainline to a heavy barrel swivel with a Uni Knot.",
+                    "Cut 18 to 24 inches of 40 to 60lb leader and snell a circle hook to one end.",
+                    "Tie the other end of the leader to the swivel, then hook your bait once through so the point stays exposed.",
+                    "Set the rod in a sand spike. When a fish takes the bait, reel steadily instead of jerking so the circle hook sets in the corner of its mouth."
+                ]
+            },
+            {
+                id: "high-low",
+                title: "High-Low Bottom Rig",
+                subtitle: "Targeting: Drum, Sheepshead, & Whiting",
+                species: ["drum"],
+                materials: "About 3 ft of 30lb fluorocarbon or mono, barrel swivel, 2 small circle or Kahle hooks (#1 to 1/0), 1 to 3oz bank sinker, shrimp or fiddler crab.",
+                knots: ["uni-knot", "improved-clinch", "dropper-loop"],
+                steps: [
+                    "Cut about 3 feet of 30lb line and tie a barrel swivel to the top end with a Uni Knot or Improved Clinch.",
+                    "About 8 inches below the swivel, tie a Dropper Loop.",
+                    "Tie a second Dropper Loop about 12 inches below the first so the two hooks can't tangle.",
+                    "Push each loop through a hook's eye, pass the hook back through the loop, and pull it snug.",
+                    "Tie a bank sinker to the bottom end, then tie your mainline to the swivel."
+                ]
+            }
+        ],
+        knots: [
+            {
+                id: "uni-knot",
+                title: "The Uni Knot",
+                subtitle: "Category: Hook / Terminal Connection",
+                materials: "Universal knot perfect for monofilament, fluorocarbon, and braid-to-terminal connections.",
+                steps: [
+                    "Run the line straight through the eye of the hook or swivel and pull about 6 inches of tag end through.",
+                    "Fold the tag end back parallel to the double mainline to form a simple open loop.",
+                    "Wrap the tag end around both internal lines inside the loop 4 to 6 times.",
+                    "Moisten the line with saliva or water and pull the tag end gently to close up the loops of the knot.",
+                    "Pull the main standing line firmly to slide the completed knot all the way down snug against the eyelet, then trim the tag end close."
+                ]
+            },
+            {
+                id: "palomar-knot",
+                title: "The Palomar Knot",
+                subtitle: "Category: Maximum Hook Strength",
+                materials: "Easiest and strongest connection for tying braid or mono straight to hooks and swivels.",
+                steps: [
+                    "Double about 6 inches of line to form a loop, then push the loop through the eye of the hook or swivel.",
+                    "With the doubled line, tie a loose overhand knot, letting the hook hang from the bottom. Keep the two lines side by side without twisting.",
+                    "Pass the end of the loop completely over the hook (or the whole lure or swivel).",
+                    "Moisten the line, then pull the standing line and tag end together to cinch the knot down tight against the eye.",
+                    "Trim the tag end, leaving about 1/8 inch."
+                ]
+            },
+            {
+                id: "double-uni",
+                title: "The Double Uni Knot",
+                subtitle: "Category: Line-to-Line (Braid to Leader)",
+                materials: "Joins braided mainline to a fluorocarbon or mono leader. Slim enough to pass through rod guides.",
+                steps: [
+                    "Overlap the end of your braid and the end of your leader by about 8 to 10 inches, with the tag ends pointing in opposite directions.",
+                    "Using the braid tag, form a loop over both lines and wrap it through the loop around both lines 8 to 10 times. Braid is slick, so it needs extra wraps.",
+                    "Pull the braid tag to snug that first knot, but don't fully tighten it yet.",
+                    "Using the leader tag, form a loop the same way and wrap it around both lines 4 to 6 times, then snug it.",
+                    "Moisten the knots, then pull both standing lines in opposite directions so the two knots slide together and lock tight.",
+                    "Trim both tag ends close."
+                ]
+            },
+            {
+                id: "loop-knot",
+                title: "Non-Slip Loop Knot",
+                subtitle: "Category: Lure Action",
+                materials: "Leaves a small open loop at the lure eye so jigs and plugs swing freely with more natural action.",
+                steps: [
+                    "Tie a loose overhand knot in the leader about 6 inches from the end.",
+                    "Pass the tag end through the eye of the jig, then back through the overhand knot on the same side it came out.",
+                    "Wrap the tag end around the standing line. For 15 to 40lb leader, 4 wraps is right; use more wraps for lighter line.",
+                    "Pass the tag end back through the overhand knot, entering on the same side it exited.",
+                    "Moisten, pull the tag end to snug the wraps, then pull the standing line hard to shrink the loop to a small size and lock the knot.",
+                    "Trim the tag end close."
+                ]
+            },
+            {
+                id: "fg-knot",
+                title: "The FG Knot",
+                subtitle: "Category: Line-to-Line (Slimmest Braid to Leader)",
+                materials: "The slimmest, strongest braid-to-leader connection. It slips through rod guides with barely a bump. Takes some practice.",
+                steps: [
+                    "Hold the braid tight by draping its tag end over your index finger and thumb, keeping steady tension toward the rod.",
+                    "Lay the leader against the braid and weave it: down one side, up, then down the other side, so the braid crisscrosses the leader.",
+                    "Keep alternating with the leader pulled tight until the wrapped section is about 1/2 to 3/4 inch long. Lighter line needs more wraps.",
+                    "Pinch the wraps, let go of the braid tag, and tie 6 to 8 half hitches with it around both the leader and the braid.",
+                    "Moisten, then pull the braid and leader hard in opposite directions to lock the wraps into the leader.",
+                    "Trim the leader tag close, finish with 3 or 4 half hitches around the main braid, then trim the braid tag and test it."
+                ]
+            },
+            {
+                id: "dropper-loop",
+                title: "The Dropper Loop",
+                subtitle: "Category: Loop in the Middle of the Line",
+                materials: "Makes a loop that stands off the middle of the line, so you can hang extra hooks on a bottom rig.",
+                steps: [
+                    "Make a loop in the line where you want the dropper.",
+                    "Wrap one side of the loop around the other side at least 5 times, holding the loop open with a finger. A small hole forms in the middle of the twists.",
+                    "Push the bottom of the loop through that center hole.",
+                    "Hold the new loop with a finger (or your teeth) so it can't slip back out.",
+                    "Moisten, pull both ends of the line in opposite directions, and slide the coils together until the loop stands off the line."
+                ]
+            },
+            {
+                id: "snell-knot",
+                title: "The Snell Knot",
+                subtitle: "Category: Circle Hooks for Bait",
+                materials: "Ties the leader along the hook shank so the hook turns and sets itself, which is ideal for circle hooks. Tie it on a cut length of leader.",
+                steps: [
+                    "Lay the short end of the leader along the underside of the hook shank so its tip just reaches past the bend.",
+                    "Bring the long side of the leader around toward the bend to form a wide loop, then lay it along the top of the shank so it runs past the eye. Pinch both lines to the shank.",
+                    "Wind the side of the loop nearest the eye around the shank and both lines 5 to 7 times, working toward the bend. Keep the wraps tight against your pinching finger.",
+                    "Pull the long end sticking out past the eye to cinch the wraps down snug.",
+                    "Feed the long end back through the eye from the underside, pull firmly to seat the knot behind the eye, and trim the short tag at the bend."
+                ]
+            },
+            {
+                id: "san-diego-jam",
+                title: "San Diego Jam",
+                subtitle: "Category: Strong Hook Knot for Fluorocarbon",
+                materials: "A very strong hook and lure knot that holds well in slick fluorocarbon.",
+                steps: [
+                    "Pass the tag end through the eye and pull 8 to 10 inches through. Pinch the hook or let the lure hang.",
+                    "Run the tag back up alongside the standing line and loop it over your index finger.",
+                    "Wrap the tag around the doubled line 7 times, working down toward the eye.",
+                    "Pass the tag between the two lines just below the last wrap, then bring it up and through the loop on your finger.",
+                    "Moisten, pull the tag tight, slide the knot snug against the eye, and trim the tag."
+                ]
+            },
+            {
+                id: "improved-clinch",
+                title: "Improved Clinch Knot",
+                subtitle: "Category: Mono to Hooks & Lures",
+                materials: "The classic knot for tying monofilament to hooks, lures, and swivels. Not recommended for braid, which can slip.",
+                steps: [
+                    "Pass the line through the eye and pull about 6 inches through.",
+                    "Wrap the tag end around the standing line 5 to 7 times, working away from the eye.",
+                    "Bring the tag back and pass it through the small loop right next to the eye.",
+                    "Then pass the tag through the big loop that just formed alongside the wraps.",
+                    "Moisten, pull the standing line to snug the coils down against the eye, and trim the tag."
+                ]
+            }
+        ]
+    };
+
+    // ---------- STEP PICTURES ----------
+    // Every step has its own drawing, built from simple shapes (no image files, so it all works offline).
+    // Colors: gold = braid, blue = leader, gray = hardware, coral = which way to move or pull, teal circle = what's new.
+    // Each picture is drawn on a 320 x 200 grid. COL.bg must match --picture-bg in the CSS.
+    const COL = {
+        braid: "#b7791f", leader: "#0284c7", metal: "#64748b", lead: "#94a3b8", arrow: "#f2542d",
+        text: "#1e293b", muted: "#5b6b7a", bg: "#eef7f6", hl: "#14b8a6", water: "#38bdf8", ok: "#15803d",
+        cork: "#f97316", corkTip: "#ffffff", bead: "#ef4444", plastic: "#4ade80", shrimp: "#fb7185", spot: "#7f1d1d",
+        divider: "#cfe3e0", finger: "#f2c6a0", sand: "#f3dfb5", gold: "#eab308", goldEdge: "#a16207", dark: "#334155"
+    };
+
+    const draw = {
+        line: (d, c = COL.leader, w = 4) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`,
+        // Same line with a gap around it, so it reads as passing OVER whatever is underneath
+        over: (d, c = COL.leader, w = 4) => `<path d="${d}" fill="none" stroke="${COL.bg}" stroke-width="${w + 6}"/>` + draw.line(d, c, w),
+        // Doubled line (two strands side by side), used for the Palomar
+        dbl: (d, c = COL.leader) => draw.line(d, c, 9) + draw.line(d, COL.bg, 2.5),
+        overDbl: (d, c = COL.leader) => `<path d="${d}" fill="none" stroke="${COL.bg}" stroke-width="15"/>` + draw.dbl(d, c),
+        dashed: (d, c = COL.muted) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="1.5" stroke-dasharray="4 4"/>`,
+        arrow: (d, c = COL.arrow) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrowHead)"/>`,
+        label: (x, y, t, anchor = "middle", c = COL.text, size = 12) => `<text x="${x}" y="${y}" fill="${c}" font-size="${size}" font-weight="600" text-anchor="${anchor}">${t}</text>`,
+        note: (x, y, t, anchor = "middle") => draw.label(x, y, t, anchor, COL.muted, 11),
+        ring: (cx, cy, r = 6, c = COL.metal, w = 3) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${c}" stroke-width="${w}"/>`,
+        highlight: (cx, cy, r = 18) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${COL.hl}" stroke-width="2" stroke-dasharray="4 4"/>`,
+        // A finished knot: tight wraps across a horizontal line
+        knot: (x, y, c = COL.leader, n = 4) => {
+            let out = "";
+            for (let i = 0; i < n; i++) {
+                const cx = x + (i - (n - 1) / 2) * 4.5;
+                out += draw.over(`M${cx + 3} ${y - 7} L${cx - 3} ${y + 7}`, c, 3);
+            }
+            return out;
+        },
+        // Same, across a vertical line
+        knotV: (x, y, c = COL.leader, n = 4) => {
+            let out = "";
+            for (let i = 0; i < n; i++) {
+                const cy = y + (i - (n - 1) / 2) * 4.5;
+                out += draw.over(`M${x - 7} ${cy - 3} L${x + 7} ${cy + 3}`, c, 3);
+            }
+            return out;
+        },
+        // Wraps around a line: the back half goes under the lines, the front half over them
+        coils: (x0, y, n, sp, c, h = 16) => {
+            let back = "", front = "";
+            for (let i = 0; i < n; i++) {
+                const cx = x0 + i * sp;
+                front += draw.over(`M${cx + 4} ${y - h} L${cx - 4} ${y + h}`, c, 3.5);
+                if (i < n - 1) back += draw.line(`M${cx - 4} ${y + h} L${cx + sp + 4} ${y - h}`, c, 3);
+            }
+            return { back: `<g opacity="0.45">${back}</g>`, front };
+        },
+        drops: (x, y) => [0, 1].map(i => {
+            const dx = x + i * 14, dy = y + i * 10;
+            return `<path d="M${dx} ${dy - 9} C${dx + 6} ${dy - 2} ${dx + 6} ${dy + 4} ${dx} ${dy + 4} C${dx - 6} ${dy + 4} ${dx - 6} ${dy - 2} ${dx} ${dy - 9} Z" fill="${COL.water}"/>`;
+        }).join(""),
+        scissors: (x, y, angle = 0) => `<g transform="translate(${x} ${y}) rotate(${angle})" fill="none" stroke="${COL.text}" stroke-width="2.5" stroke-linecap="round"><circle cx="-11" cy="-7" r="4.5"/><circle cx="-11" cy="7" r="4.5"/><path d="M-7 -5 L13 6 M-7 5 L13 -6"/></g>`,
+        dim: (x1, x2, y, t) => draw.line(`M${x1} ${y} H${x2} M${x1} ${y - 5} V${y + 5} M${x2} ${y - 5} V${y + 5}`, COL.muted, 1.5) + draw.note((x1 + x2) / 2, y - 8, t),
+        check: (x, y) => draw.line(`M${x - 7} ${y} L${x - 2} ${y + 5} L${x + 8} ${y - 6}`, COL.ok, 3.5),
+
+        // Hardware and bait
+        hook: (x, y, s = 1, c = COL.metal) => { // eye on top, hangs down, point on the left
+            const r = 14 * s;
+            return `<g fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round"><circle cx="${x}" cy="${y}" r="${5 * s}"/><path d="M${x} ${y + 5 * s} V${y + 48 * s} A${r} ${r} 0 0 1 ${x - 2 * r} ${y + 48 * s} V${y + 36 * s}"/></g>`
+                + `<path d="M${x - 2 * r} ${y + 27 * s} l${-3 * s} ${11 * s} h${6 * s} Z" fill="${c}"/>`;
+        },
+        hookSide: (x, y, s = 1) => { // eye on the right, shank runs left (for knot pictures)
+            const r = 11 * s;
+            return `<g fill="none" stroke="${COL.metal}" stroke-width="3.5" stroke-linecap="round"><path d="M${x - 7} ${y} H${x - 46 * s} A${r} ${r} 0 0 0 ${x - 46 * s} ${y + 2 * r} H${x - 32 * s}"/></g>`
+                + `<path d="M${x - 24 * s} ${y + 2 * r} l${-11 * s} ${-3 * s} v${6 * s} Z" fill="${COL.metal}"/>` + draw.ring(x, y, 7);
+        },
+        circleHook: (x, y, s = 1) => {
+            const r = 11 * s, cx = x + r, cy = y + 24 * s;
+            const ex = cx + r * Math.cos(-Math.PI / 3), ey = cy + r * Math.sin(-Math.PI / 3);
+            return draw.ring(x, y, 4.5 * s)
+                + `<path d="M${x} ${y + 4.5 * s} V${cy} A${r} ${r} 0 1 0 ${ex} ${ey}" fill="none" stroke="${COL.metal}" stroke-width="3.5" stroke-linecap="round"/>`
+                + `<path d="M${ex - 9 * s} ${ey - 2 * s} L${ex + 2 * s} ${ey - 3 * s} L${ex + 1 * s} ${ey + 3 * s} Z" fill="${COL.metal}"/>`;
+        },
+        swivel: (x, y) => `<g fill="none" stroke="${COL.metal}" stroke-width="3"><circle cx="${x - 12}" cy="${y}" r="4.5"/><circle cx="${x + 12}" cy="${y}" r="4.5"/></g><rect x="${x - 7}" y="${y - 4.5}" width="14" height="9" rx="4" fill="${COL.metal}"/>`,
+        cork: (x, y) => draw.line(`M${x - 56} ${y} H${x + 50}`, COL.metal, 2.5) + draw.ring(x - 61, y, 5, COL.metal, 2.5)
+            + `<circle cx="${x - 40}" cy="${y}" r="4" fill="${COL.bead}"/><circle cx="${x + 40}" cy="${y}" r="4" fill="${COL.bead}"/>`
+            + `<ellipse cx="${x}" cy="${y}" rx="30" ry="15" fill="${COL.cork}"/><path d="M${x + 10} ${y - 14.1} A30 15 0 0 1 ${x + 10} ${y + 14.1} Z" fill="${COL.corkTip}"/><ellipse cx="${x}" cy="${y}" rx="30" ry="15" fill="none" stroke="#c2410c" stroke-width="1.5"/>`
+            + draw.swivel(x + 66, y),
+        sinker: (x, y) => `<ellipse cx="${x}" cy="${y}" rx="17" ry="10.5" fill="${COL.lead}" opacity="0.92"/><ellipse cx="${x - 5}" cy="${y - 4}" rx="6" ry="2.5" fill="#ffffff" opacity="0.6"/>`,
+        bead: (x, y) => `<circle cx="${x}" cy="${y}" r="5.5" fill="${COL.bead}"/>`,
+        jighead: (x, y, s = 1) => { // head center at x,y; eye on top; hook point rides up, pointing back at the head
+            const r = 12 * s;
+            return draw.line(`M${x + 12 * s} ${y} H${x + 70 * s} A${r} ${r} 0 0 0 ${x + 70 * s} ${y - 24 * s} H${x + 58 * s}`, COL.metal, 3)
+                + `<path d="M${x + 52 * s} ${y - 24 * s} l${9 * s} ${-3 * s} v${6 * s} Z" fill="${COL.metal}"/>`
+                + `<circle cx="${x}" cy="${y}" r="${r}" fill="${COL.lead}"/>`
+                + `<rect x="${x + 9 * s}" y="${y - 3.5 * s}" width="${9 * s}" height="${7 * s}" rx="${2 * s}" fill="${COL.lead}"/>`
+                + draw.ring(x - s, y - 16 * s, 4.5 * s, COL.metal, 2.5);
+        },
+        // The part of a jig hook that shows above a threaded soft plastic
+        jigPoint: (x, y, s = 1, topEdge = 5.3) => {
+            const r = 12 * s, cx = x + 70 * s, cy = y - 12 * s, dy = (y - topEdge * s) - cy;
+            const sx = cx + Math.sqrt(Math.max(r * r - dy * dy, 0));
+            return draw.line(`M${sx} ${y - topEdge * s} A${r} ${r} 0 0 0 ${cx} ${y - 24 * s} H${x + 58 * s}`, COL.metal, 3)
+                + `<path d="M${x + 52 * s} ${y - 24 * s} l${9 * s} ${-3 * s} v${6 * s} Z" fill="${COL.metal}"/>`;
+        },
+        plastic: (x1, y, len, s = 1) => { // paddle tail, nose on the left
+            const b = x1 + len - 16 * s, e = x1 + len;
+            return `<path d="M${x1} ${y} Q${x1} ${y - 8 * s} ${x1 + 10 * s} ${y - 8 * s} L${b} ${y - 4 * s} Q${b + 6 * s} ${y - 3.5 * s} ${b + 9 * s} ${y - 2 * s} L${e} ${y - 11 * s} Q${e + 5 * s} ${y} ${e} ${y + 11 * s} L${b + 9 * s} ${y + 2 * s} Q${b + 6 * s} ${y + 3.5 * s} ${b} ${y + 4 * s} L${x1 + 10 * s} ${y + 8 * s} Q${x1} ${y + 8 * s} ${x1} ${y} Z" fill="${COL.plastic}"/>`;
+        },
+        plasticFlipped: (xNose, y, len, s = 1) => `<g transform="translate(${2 * xNose} 0) scale(-1 1)">${draw.plastic(xNose, y, len, s)}</g>`,
+        shrimp: (x, y) => { // head at x,y facing left, hooked under the horn
+            let out = `<path d="M${x + 58} ${y + 31} l-10 13 l10 -4 l10 4 Z" fill="${COL.shrimp}"/>`;
+            [[58, 27, 6.5], [50, 17, 7.5], [38, 9, 8.5], [24, 3, 10]].forEach(([dx, dy, r]) => {
+                out += `<circle cx="${x + dx}" cy="${y + dy}" r="${r}" fill="${COL.shrimp}" stroke="${COL.bg}" stroke-width="1.5"/>`;
+            });
+            out += draw.line(`M${x - 16} ${y + 4} Q${x - 40} ${y + 10} ${x - 52} ${y + 30}`, COL.shrimp, 1.5)
+                + draw.line(`M${x - 14} ${y + 6} Q${x - 30} ${y + 20} ${x - 34} ${y + 38}`, COL.shrimp, 1.5);
+            for (let i = 0; i < 4; i++) out += draw.line(`M${x - 6 + i * 8} ${y + 10} l-3 9`, COL.shrimp, 1.5);
+            out += `<g fill="none" stroke="${COL.metal}" stroke-width="3.5" stroke-linecap="round"><circle cx="${x - 38}" cy="${y - 49}" r="5"/><path d="M${x - 38} ${y - 44} V${y + 4} A15 15 0 0 0 ${x - 8} ${y + 4} V${y - 6}"/></g>`;
+            out += `<ellipse cx="${x}" cy="${y}" rx="21" ry="12" fill="${COL.shrimp}"/>`;
+            out += `<path d="M${x - 13} ${y - 8} L${x - 30} ${y - 16} L${x - 11} ${y - 4} Z" fill="${COL.shrimp}"/>`; // horn
+            out += `<circle cx="${x - 15}" cy="${y - 1}" r="2.5" fill="#1a202c"/>`; // eye
+            out += `<circle cx="${x + 5}" cy="${y - 1}" r="4.5" fill="${COL.spot}"/>`; // dark spot
+            out += `<path d="M${x - 8} ${y - 23} l-3 11 h6 Z" fill="${COL.metal}"/>`; // hook point out the top
+            return out;
+        },
+        lure: (x, y) => draw.line(`M${x - 12} ${y} H${x - 6}`, COL.metal, 3) + `<circle cx="${x - 26}" cy="${y}" r="14" fill="${COL.lead}"/>` + draw.ring(x, y, 7),
+
+        // Added with the second batch of rigs and knots
+        dimV: (x, y1, y2, t) => draw.line(`M${x} ${y1} V${y2} M${x - 5} ${y1} H${x + 5} M${x - 5} ${y2} H${x + 5}`, COL.muted, 1.5) + draw.note(x - 9, (y1 + y2) / 2 + 4, t, "end"),
+        water: (y) => {
+            let d = `M0 ${y}`;
+            for (let x = 0; x < 320; x += 40) d += " q10 -6 20 0 t20 0";
+            return `<rect x="0" y="${y}" width="320" height="${200 - y}" fill="#bae6fd" opacity="0.35"/>` + draw.line(d, COL.water, 2.5);
+        },
+        finger: (x, y, r = 10) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${COL.finger}"/>`,
+        splitShot: (x, y) => `<circle cx="${x}" cy="${y}" r="6.5" fill="${COL.lead}"/><path d="M${x - 6.5} ${y} H${x + 6.5}" stroke="${COL.metal}" stroke-width="1.2"/>`,
+        swivelV: (x, y) => `<g fill="none" stroke="${COL.metal}" stroke-width="3"><circle cx="${x}" cy="${y - 12}" r="4.5"/><circle cx="${x}" cy="${y + 12}" r="4.5"/></g><rect x="${x - 4.5}" y="${y - 7}" width="9" height="14" rx="4" fill="${COL.metal}"/>`,
+        pyramid: (x, y) => draw.ring(x, y, 3.5, COL.metal, 2.5) + `<path d="M${x} ${y + 4} L${x + 12} ${y + 30} L${x - 12} ${y + 30} Z" fill="${COL.lead}"/>`,
+        sinkerSlide: (x, y) => `<rect x="${x - 11}" y="${y - 4.5}" width="22" height="9" rx="4" fill="${COL.dark}"/>` + draw.line(`M${x} ${y + 4} V${y + 10}`, COL.metal, 2) + draw.ring(x, y + 13, 3.5, COL.metal, 2.5),
+        bankSinker: (x, y) => draw.ring(x, y, 3.5, COL.metal, 2.5)
+            + `<path d="M${x} ${y + 4} C${x + 5} ${y + 6} ${x + 11} ${y + 16} ${x + 11} ${y + 24} Q${x + 11} ${y + 32} ${x} ${y + 32} Q${x - 11} ${y + 32} ${x - 11} ${y + 24} C${x - 11} ${y + 16} ${x - 5} ${y + 6} ${x} ${y + 4} Z" fill="${COL.lead}"/>`,
+        baitChunk: (x, y) => `<rect x="${x - 15}" y="${y - 8}" width="30" height="16" rx="5" fill="#e2e8f0" stroke="${COL.metal}" stroke-width="1.5"/><rect x="${x - 14}" y="${y - 7}" width="28" height="5" rx="2.5" fill="${COL.metal}"/>`,
+        spoon: (x, y, s = 1) => { // split ring at x,y; hook rides up at the tail with a wire weedguard
+            const X = d => x + d * s, Y = d => y + d * s;
+            return `<path d="M${X(6)} ${y} Q${X(18)} ${Y(-13)} ${X(42)} ${Y(-12)} Q${X(62)} ${Y(-9)} ${X(64)} ${y} Q${X(62)} ${Y(9)} ${X(42)} ${Y(12)} Q${X(18)} ${Y(13)} ${X(6)} ${y} Z" fill="${COL.gold}" stroke="${COL.goldEdge}" stroke-width="1.5"/>`
+                + `<path d="M${X(16)} ${Y(-4)} Q${X(32)} ${Y(-9)} ${X(50)} ${Y(-6)}" fill="none" stroke="#fef08a" stroke-width="${3 * s}" stroke-linecap="round"/>`
+                + draw.line(`M${X(40)} ${Y(3)} H${X(72)} A${8 * s} ${8 * s} 0 0 0 ${X(72)} ${Y(-13)} H${X(64)}`, COL.metal, 2.5)
+                + `<path d="M${X(58)} ${Y(-13)} l${7 * s} ${-2.5 * s} v${5 * s} Z" fill="${COL.metal}"/>`
+                + draw.line(`M${X(44)} ${Y(-2)} L${X(66)} ${Y(-18)}`, COL.metal, 1.8)
+                + draw.ring(x, y, 4 * s, COL.metal, 2.5);
+        },
+        ewgHook: (x, y, s = 1) => { // eye on the left, z-bend, wide gap, point rides up, weight under the shank
+            return `<ellipse cx="${x + 28 * s}" cy="${y + 12 * s}" rx="${9 * s}" ry="${5 * s}" fill="${COL.lead}"/>`
+                + draw.line(`M${x + 4.5 * s} ${y} H${x + 10 * s} L${x + 16 * s} ${y + 8 * s} H${x + 76 * s} A${14 * s} ${14 * s} 0 0 0 ${x + 76 * s} ${y - 20 * s} H${x + 62 * s}`, COL.metal, 3)
+                + `<path d="M${x + 55 * s} ${y - 20 * s} l${9 * s} ${-3 * s} v${6 * s} Z" fill="${COL.metal}"/>` + draw.ring(x, y, 4.5 * s, COL.metal, 2.5);
+        },
+        // A finished dropper loop standing off a vertical line
+        dropperLoop: (x, y, len = 36) => draw.line(`M${x + 3} ${y - 3} C${x + 18} ${y - 12} ${x + len} ${y - 8} ${x + len} ${y} C${x + len} ${y + 8} ${x + 18} ${y + 12} ${x + 3} ${y + 3}`) + draw.knotV(x, y, COL.leader, 3),
+        // FG weave: braid crisscrossing over and under the leader
+        weave: (x1, x2, y, sp = 8, c = COL.braid) => {
+            let under = "", over = "";
+            for (let x = x1; x <= x2; x += sp) {
+                over += draw.over(`M${x - 4} ${y + 8} L${x + 4} ${y - 8}`, c, 3);
+                under += draw.line(`M${x + sp / 2 - 4} ${y - 8} L${x + sp / 2 + 4} ${y + 8}`, c, 3);
+            }
+            return { under: `<g opacity="0.6">${under}</g>`, over };
+        },
+        // Two strands twisted around each other (dropper loop)
+        twist: (x1, x2, y, c = COL.leader, amp = 5, half = 8) => {
+            let out = "";
+            for (let x = x1, i = 0; x < x2; x += half, i++) {
+                const s = i % 2 === 0 ? -amp : amp;
+                const a = `M${x} ${y + s} C${x + half / 2} ${y + s} ${x + half / 2} ${y - s} ${x + half} ${y - s}`;
+                const b = `M${x} ${y - s} C${x + half / 2} ${y - s} ${x + half / 2} ${y + s} ${x + half} ${y + s}`;
+                out += i % 2 === 0 ? draw.line(a, c, 3.5) + draw.over(b, c, 3.5) : draw.line(b, c, 3.5) + draw.over(a, c, 3.5);
+            }
+            return out;
+        },
+        // Wraps around a vertical shank (snell)
+        shankWraps: (x, y1, n, sp, c = COL.leader, half = 14) => {
+            let back = "", front = "";
+            for (let i = 0; i < n; i++) {
+                const y = y1 + i * sp;
+                front += draw.over(`M${x - half} ${y - 3} L${x + half} ${y + 3}`, c, 3.5);
+                if (i < n - 1) back += draw.line(`M${x + half} ${y + 3} L${x - half} ${y + sp - 3}`, c, 3);
+            }
+            return { back: `<g opacity="0.45">${back}</g>`, front };
+        }
+    };
+
+    function svgWrap(inner, title) {
+        const safeTitle = title.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+        return `<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${safeTitle}">`
+            + `<defs><marker id="arrowHead" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="${COL.arrow}"/></marker></defs>`
+            + inner + `</svg>`;
+    }
+
+    // Pieces shared by several pictures
+    const pic = {
+        join: (label, len) => draw.line("M12 100 H160", COL.braid) + draw.line("M160 100 H308") + draw.knot(150, 100, COL.braid) + draw.knot(170, 100)
+            + draw.highlight(160, 100, 26) + draw.label(160, 64, label) + draw.note(40, 122, "braid") + draw.note(280, 122, "leader") + draw.dim(172, 308, 156, len),
+        hlBase: (end = 176) => draw.line(`M140 34 V${end}`) + draw.line("M140 0 V10", COL.braid) + draw.swivelV(140, 22) + draw.knotV(140, 40),
+        hlLoops: () => draw.dropperLoop(140, 80, 40) + draw.dropperLoop(140, 136, 40),
+        hlHooks: () => draw.hook(180, 80, 0.6) + draw.hook(180, 136, 0.6),
+        dropperHole: () => draw.line("M12 112 H100") + draw.line("M216 112 H308") + draw.twist(100, 140, 112) + draw.twist(176, 216, 112)
+            + draw.line("M140 107 C150 100 166 100 176 107") + draw.line("M140 117 C150 124 166 124 176 117"),
+        sdjBase: "M308 96 H75 A4 4 0 0 0 75 104 H226 C252 104 254 70 226 70 H210 L204 82",
+        clinchBase: (c) => c.back + draw.line("M112 104 L128 84") + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H112") + c.front,
+        snellHook: () => draw.hook(200, 36, 2.1),
+        weedlessHook: (bendD) => draw.line(`M57 86 H66 L72 118 H150 ${bendD}`, COL.metal, 3) + `<ellipse cx="96" cy="121" rx="11" ry="5.5" fill="${COL.lead}"/>`
+    };
+
+    // One drawing per step, in the same order as the steps above
+    const stepVisuals = {
+        "popping-cork": [
+            () => draw.line("M12 100 H89", COL.braid) + draw.cork(150, 100) + draw.knot(80, 100, COL.braid)
+                + draw.highlight(84, 100, 20) + draw.label(84, 68, "Uni Knot") + draw.note(36, 122, "braid") + draw.note(150, 136, "popping cork"),
+            () => draw.line("M40 100 H262") + draw.dim(40, 262, 72, "18–24 in") + draw.scissors(282, 100, 180)
+                + draw.note(151, 124, "fluorocarbon leader") + draw.note(151, 150, "up to 3 ft in deeper water"),
+            () => draw.line("M12 100 H59", COL.braid) + draw.line("M198 100 H306") + draw.cork(120, 100) + draw.knot(208, 100)
+                + draw.highlight(204, 100, 20) + draw.label(204, 68, "Uni or Palomar") + draw.note(30, 122, "braid") + draw.note(262, 122, "leader"),
+            () => {
+                const s = 0.75, ex = 238, ey = 100;
+                return draw.line("M12 100 H44", COL.braid) + draw.line(`M183 100 H${ex}`) + draw.cork(105, 100) + draw.knot(228, 100)
+                    + draw.jighead(ex + s, ey + 16 * s, s) + draw.highlight(262, 106, 36) + draw.label(262, 60, "jighead or hook");
+            },
+            () => {
+                const s = 0.85, x = 26, y = 96;
+                return draw.jighead(x, y, s) + draw.plastic(x + 18 * s, y, 105 * s, s) + draw.jigPoint(x, y, s)
+                    + draw.note(80, 150, "soft plastic") + draw.line("M163 30 V176", COL.divider, 1.5)
+                    + draw.shrimp(236, 104) + draw.note(236, 30, "hook under the horn")
+                    + draw.line("M274 72 L246 99", COL.muted, 1.2) + draw.note(284, 66, "dark spot") + draw.note(236, 180, "live shrimp");
+            }
+        ],
+        "jig-lure": [
+            () => draw.line("M12 100 H160", COL.braid) + draw.line("M160 100 H308") + draw.knot(150, 100, COL.braid) + draw.knot(170, 100)
+                + draw.highlight(160, 100, 26) + draw.label(160, 64, "Double Uni") + draw.note(40, 122, "braid") + draw.note(280, 122, "leader")
+                + draw.dim(172, 308, 156, "20–30 in"),
+            () => {
+                const s = 1.2, hx = 212, hy = 118, ex = hx - s, ey = hy - 16 * s;
+                return draw.line(`M12 ${ey} H${ex}`) + draw.jighead(hx, hy, s) + draw.knot(ex - 12, ey) + draw.highlight(ex - 4, ey, 20)
+                    + draw.label(ex - 4, ey - 34, "Uni or loop knot") + draw.note(40, ey + 22, "leader");
+            },
+            () => {
+                const s = 1.1, x = 60, y = 62, nose = x + 18 * s, exit = x + 75 * s;
+                return draw.jighead(x, y, s) + draw.plastic(nose, 140, 115, 1.1)
+                    + draw.dashed(`M${nose} ${y + 8} V130`) + draw.dashed(`M${exit} ${y + 4} V128`)
+                    + `<circle cx="${exit}" cy="${134}" r="4.5" fill="${COL.arrow}"/>`
+                    + draw.note(250, 66, "lay it alongside") + draw.note(exit, 176, "hook comes out here");
+            },
+            () => {
+                const s = 1.3, x = 60, y = 150, px = x + 52 * s, py = y - 24 * s;
+                return draw.jighead(x, y, s)
+                    + `<g transform="rotate(45 ${px} ${py})">${draw.plasticFlipped(px + 3, py, 120, 1)}</g>`
+                    + draw.dashed(`M${px} ${py} L${px - 52} ${py - 52}`, COL.metal)
+                    + draw.arrow(`M${px - 48} ${py - 79} L${px - 8} ${py - 39}`)
+                    + draw.note(240, 70, "point into the nose,") + draw.note(240, 86, "then down the body");
+            },
+            () => {
+                const s = 1.5, x = 46, y = 112;
+                return draw.jighead(x, y, s) + draw.plastic(x + 18 * s, y, 105 * s, s) + draw.jigPoint(x, y, s)
+                    + draw.check(276, 104) + draw.note(276, 128, "straight") + draw.note(150, 172, "nose snug on the collar");
+            }
+        ],
+        "carolina-rig": [
+            () => draw.line("M12 100 H232", COL.braid) + draw.sinker(150, 100) + draw.arrow("M242 100 H284")
+                + draw.label(150, 74, "egg sinker") + draw.note(40, 122, "braid"),
+            () => draw.line("M12 100 H232", COL.braid) + draw.sinker(120, 100) + draw.bead(160, 100)
+                + draw.highlight(160, 100, 15) + draw.label(160, 72, "bead") + draw.note(160, 134, "protects the knot"),
+            () => draw.line("M12 100 H213", COL.braid) + draw.sinker(110, 100) + draw.bead(146, 100) + draw.swivel(225, 100)
+                + draw.knot(203, 100, COL.braid) + draw.highlight(210, 100, 20) + draw.label(210, 68, "Uni Knot"),
+            () => draw.line("M12 100 H138", COL.braid) + draw.line("M162 100 H300") + draw.sinker(76, 100) + draw.bead(110, 100) + draw.swivel(150, 100)
+                + draw.knot(172, 100) + draw.highlight(168, 100, 18) + draw.dim(166, 300, 150, "12–24 in") + draw.note(234, 122, "leader"),
+            () => draw.line("M12 100 H138", COL.braid) + draw.line("M162 100 H262") + draw.sinker(76, 100) + draw.bead(110, 100) + draw.swivel(150, 100)
+                + draw.knot(252, 100) + draw.circleHook(262, 100, 1.1) + draw.highlight(274, 118, 30) + draw.label(274, 78, "circle hook")
+        ],
+        "uni-knot": [
+            () => draw.line("M308 96 H75 A4 4 0 0 0 75 104 H200") + draw.hookSide(75, 100)
+                + draw.dim(75, 200, 136, "about 6 in") + draw.note(255, 86, "standing line") + draw.note(208, 108, "tag", "start"),
+            () => draw.line("M308 96 H75 A4 4 0 0 0 75 104 H226 C258 104 258 48 226 48 H142") + draw.over("M142 48 C120 48 112 78 118 124")
+                + draw.hookSide(75, 100) + draw.note(185, 78, "loop") + draw.note(118, 142, "tag"),
+            () => {
+                const c = draw.coils(196, 100, 5, -12, COL.leader, 18);
+                return c.back + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H226 C258 104 258 48 226 48 H200 V82") + c.front + draw.line("M144 118 L130 134")
+                    + draw.hookSide(75, 100) + draw.label(175, 34, "4–6 wraps through the loop");
+            },
+            () => {
+                const c = draw.coils(176, 100, 5, -6, COL.leader, 14);
+                return c.back + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H180 V86") + c.front + draw.line("M148 114 L136 128") + draw.arrow("M133 132 L120 146")
+                    + draw.hookSide(75, 100) + draw.drops(208, 58) + draw.label(165, 180, "wet it, then pull the tag");
+            },
+            () => {
+                const c = draw.coils(110, 100, 5, -6, COL.leader, 14);
+                return c.back + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H114 V86") + c.front + draw.line("M82 114 L80 120")
+                    + draw.hookSide(75, 100) + draw.arrow("M220 80 H290") + draw.note(255, 70, "pull the standing line")
+                    + draw.scissors(98, 142, -120) + draw.label(165, 180, "slide it down snug, trim the tag");
+            }
+        ],
+        "palomar-knot": [
+            () => draw.dbl("M308 95 H124") + draw.hook(190, 95, 1.2) + draw.arrow("M144 74 H104")
+                + draw.note(262, 80, "doubled line") + draw.note(124, 118, "loop") + draw.label(160, 192, "push the loop through the eye"),
+            () => draw.dbl("M300 25 C240 25 200 60 180 128 Q175 142 170 128") + draw.dbl("M170 128 C160 90 175 40 225 32")
+                + draw.overDbl("M225 32 C270 25 268 75 235 85") + draw.dbl("M235 85 C210 92 150 96 72 96")
+                + draw.overDbl("M204 76 Q194.8 89.8 188 109") + draw.hook(175, 135, 0.8)
+                + draw.note(272, 116, "loose overhand") + draw.note(82, 120, "loop end") + draw.note(96, 168, "hook hangs below"),
+            () => draw.dbl("M300 25 C240 25 200 60 180 128 Q175 142 170 128") + draw.dbl("M170 128 C160 90 175 40 225 32")
+                + draw.overDbl("M225 32 C270 25 268 75 235 85") + draw.dbl("M235 85 C210 92 120 96 108 140 C100 185 160 196 200 190 C238 184 240 150 224 140")
+                + draw.overDbl("M204 76 Q194.8 89.8 188 109") + draw.hook(175, 135, 0.8)
+                + draw.arrow("M84 112 Q76 166 116 186") + draw.label(120, 20, "pass the loop over the hook"),
+            () => draw.line("M172 96 L276 38") + draw.line("M168 96 L94 44") + draw.line("M170 94 V112", COL.leader, 6) + draw.line("M166 110 Q170 128 174 110")
+                + draw.knotV(170, 103, COL.leader, 4) + draw.hook(170, 120, 0.9)
+                + draw.arrow("M282 34 L302 23") + draw.arrow("M88 40 L70 28") + draw.drops(214, 108) + draw.label(160, 192, "wet it, pull both ends tight"),
+            () => draw.line("M172 96 L290 30") + draw.line("M167 96 L160 89") + draw.line("M170 94 V112", COL.leader, 6) + draw.line("M166 110 Q170 128 174 110")
+                + draw.knotV(170, 103, COL.leader, 4) + draw.hook(170, 120, 0.9)
+                + draw.scissors(146, 80, 30) + draw.note(100, 62, "leave about 1/8 in") + draw.label(160, 192, "trim the tag")
+        ],
+        "double-uni": [
+            () => draw.line("M12 92 H240", COL.braid) + draw.line("M308 108 H80") + draw.dim(80, 240, 60, "overlap 8–10 in")
+                + draw.note(36, 82, "braid") + draw.note(286, 128, "leader") + draw.note(160, 150, "tag ends point opposite ways"),
+            () => {
+                const c = draw.coils(228, 100, 8, -7, COL.braid, 16);
+                return c.back + draw.line("M308 108 H80") + draw.line("M12 92 H246 C274 92 274 52 246 52 H232 V84", COL.braid) + c.front
+                    + draw.line("M175 116 L166 132", COL.braid) + draw.label(200, 38, "braid tag: 8–10 wraps");
+            },
+            () => {
+                const c = draw.coils(222, 100, 8, -4, COL.braid, 14);
+                return c.back + draw.line("M308 108 H80") + draw.line("M12 92 H226 V86", COL.braid) + c.front
+                    + draw.line("M190 114 L180 126", COL.braid) + draw.arrow("M177 130 L166 142") + draw.label(160, 176, "snug it, but not all the way");
+            },
+            () => {
+                const b = draw.coils(222, 100, 8, -4, COL.braid, 14), l = draw.coils(92, 100, 5, 9, COL.leader, 16);
+                return b.back + l.back + draw.line("M308 108 H75 C46 108 46 146 75 146 H88 V116") + draw.line("M12 92 H226 V86", COL.braid)
+                    + b.front + l.front + draw.line("M190 114 L180 126", COL.braid) + draw.line("M132 84 L142 70")
+                    + draw.label(110, 180, "leader tag: 4–6 wraps");
+            },
+            () => {
+                const b = draw.coils(196, 100, 8, -4, COL.braid, 14), l = draw.coils(128, 100, 5, 5, COL.leader, 14);
+                return b.back + l.back + draw.line("M308 108 H124") + draw.line("M12 92 H200 V86", COL.braid) + b.front + l.front
+                    + draw.line("M164 114 L158 124", COL.braid) + draw.line("M152 86 L158 76")
+                    + draw.arrow("M60 78 H22") + draw.arrow("M262 124 H300") + draw.drops(226, 52)
+                    + draw.label(160, 176, "wet it, pull the standing lines apart");
+            },
+            () => {
+                const b = draw.coils(186, 100, 8, -4, COL.braid, 14), l = draw.coils(134, 100, 5, 5, COL.leader, 14);
+                return b.back + l.back + draw.line("M308 108 H130") + draw.line("M12 92 H190 V86", COL.braid) + b.front + l.front
+                    + draw.line("M154 114 L151 119", COL.braid) + draw.line("M158 86 L161 81")
+                    + draw.scissors(176, 56, 120) + draw.label(160, 176, "trim both tags close");
+            }
+        ],
+        "loop-knot": [
+            () => draw.line("M308 100 H205 C190 100 185 85 188 75 C192 62 215 58 222 72") + draw.over("M222 72 C228 84 222 98 212 106")
+                + draw.line("M212 106 C204 110 190 108 110 106") + draw.lure(62, 110)
+                + draw.label(205, 40, "loose overhand") + draw.dim(110, 205, 146, "about 6 in") + draw.note(36, 140, "jig"),
+            () => draw.line("M308 100 H205 C190 100 185 85 188 75 C192 62 215 58 222 72") + draw.over("M222 72 C228 84 222 98 212 106")
+                + draw.line("M212 106 C204 110 190 106 120 104 H62 A6 6 0 0 0 62 116 H176 C192 116 198 104 196 90") + draw.lure(62, 110)
+                + draw.arrow("M214 132 Q210 112 202 98") + draw.note(62, 146, "through the eye") + draw.note(222, 156, "then back through the overhand"),
+            () => {
+                const c = draw.coils(236, 100, 4, 10, COL.leader, 12);
+                return c.back + draw.line("M308 100 H205 C190 100 185 85 188 75 C192 62 215 58 222 72") + draw.over("M222 72 C228 84 222 98 212 106")
+                    + draw.line("M212 106 C204 110 190 106 120 104 H62 A6 6 0 0 0 62 116 H176 C192 116 198 100 212 92 H236 L240 88")
+                    + c.front + draw.line("M262 112 L270 124") + draw.lure(62, 110)
+                    + draw.label(250, 150, "4 wraps around the line") + draw.note(250, 166, "(15–40lb leader)");
+            },
+            () => {
+                const c = draw.coils(236, 100, 4, 10, COL.leader, 12);
+                return c.back + draw.line("M308 100 H205 C190 100 185 85 188 75 C192 62 215 58 222 72") + draw.over("M222 72 C228 84 222 98 212 106")
+                    + draw.line("M212 106 C204 110 190 106 120 104 H62 A6 6 0 0 0 62 116 H176 C192 116 198 100 212 92 H236 L240 88")
+                    + c.front + draw.line("M262 112 C264 140 214 140 206 112") + draw.arrow("M240 150 Q214 150 206 130") + draw.lure(62, 110)
+                    + draw.label(190, 180, "back through the overhand, same side");
+            },
+            () => draw.line("M112 110 H308") + draw.line("M100 106 C86 104 72 104 62 104 A6 6 0 0 0 62 116 C72 116 86 116 100 114")
+                + draw.knot(106, 110, COL.leader, 5) + draw.line("M114 117 L124 128") + draw.lure(62, 110)
+                + draw.arrow("M258 96 H296") + draw.drops(170, 58) + draw.note(62, 146, "small open loop")
+                + draw.label(190, 180, "wet it, pull the tag, then the line"),
+            () => draw.line("M112 110 H308") + draw.line("M100 106 C86 104 72 104 62 104 A6 6 0 0 0 62 116 C72 116 86 116 100 114")
+                + draw.knot(106, 110, COL.leader, 5) + draw.line("M114 117 L118 122") + draw.lure(62, 110)
+                + draw.scissors(136, 140, -125) + draw.note(62, 146, "lure swings free") + draw.label(190, 180, "trim the tag")
+        ],
+        "freeline-shrimp": [
+            () => pic.join("Double Uni or FG", "24–30 in"),
+            () => draw.line("M12 100 H244") + draw.knot(234, 100) + draw.hook(244, 100, 1.1) + draw.highlight(238, 100, 22)
+                + draw.label(238, 64, "Uni or Palomar") + draw.note(40, 122, "leader"),
+            () => draw.line("M12 100 H244") + draw.splitShot(150, 100) + draw.hook(244, 100, 1.1) + draw.highlight(150, 100, 16)
+                + draw.dim(150, 244, 70, "about 12 in") + draw.label(110, 134, "optional split shot") + draw.note(110, 152, "skip it in shallow, calm water"),
+            () => draw.line("M12 44 Q90 40 132 56") + draw.shrimp(170, 110) + draw.note(250, 40, "hook under the horn")
+                + draw.line("M240 76 L181 106", COL.muted, 1.2) + draw.note(258, 70, "avoid the dark spot"),
+            () => draw.water(70) + draw.line("M10 12 Q70 40 110 70 Q160 82 192 87", COL.leader, 3) + draw.shrimp(230, 141)
+                + draw.arrow("M24 128 H84", COL.leader) + draw.arrow("M52 158 H112", COL.leader) + draw.note(54, 116, "current")
+                + draw.label(96, 192, "let it drift naturally")
+        ],
+        "weedless-plastic": [
+            () => pic.join("Double Uni or FG", "24–30 in"),
+            () => draw.line("M12 100 H143") + draw.knot(132, 100) + draw.ewgHook(150, 100, 1.5) + draw.highlight(148, 100, 18)
+                + draw.label(150, 50, "Palomar or San Diego Jam") + draw.note(40, 122, "leader") + draw.note(215, 160, "weighted swimbait hook"),
+            () => draw.line("M262 74 L256 84 H96 A18 18 0 0 0 96 120 H126", COL.metal, 3) + `<ellipse cx="230" cy="90" rx="11" ry="5.5" fill="${COL.lead}"/>`
+                + draw.ring(266, 70, 6, COL.metal, 2.5) + draw.plastic(120, 120, 170, 1.1)
+                + `<path d="M138 141 L130 128 L137 127 Z" fill="${COL.metal}"/>` + draw.highlight(130, 126, 18)
+                + draw.label(190, 178, "into the nose 1/4 in, out the bottom"),
+            () => pic.weedlessHook("A9 9 0 0 0 150 100 H136") + `<path d="M130 100 l9 -3 v6 Z" fill="${COL.metal}"/>`
+                + draw.plastic(60, 86, 190, 1.25) + draw.ring(52, 86, 5, COL.metal, 2.5)
+                + draw.arrow("M190 142 Q178 124 162 108") + draw.note(70, 56, "nose snug at the eye") + draw.note(222, 158, "point faces the belly"),
+            () => pic.weedlessHook("A11 11 0 0 0 150 96") + draw.plastic(60, 86, 190, 1.25) + draw.ring(52, 86, 5, COL.metal, 2.5)
+                + `<g opacity="0.55">${draw.line("M150 80 H138", COL.metal, 3)}<path d="M133 80 l7 -2.5 v5 Z" fill="${COL.metal}"/></g>`
+                + draw.line("M196 48 L152 76", COL.muted, 1.2) + draw.note(232, 42, "tip tucked under the skin")
+                + draw.check(282, 112) + draw.note(150, 162, "slides through grass without snagging")
+        ],
+        "gold-spoon": [
+            () => draw.line("M12 100 H188", COL.braid) + draw.swivel(200, 100) + draw.knot(178, 100, COL.braid) + draw.highlight(184, 100, 20)
+                + draw.label(184, 68, "Uni Knot") + draw.note(40, 122, "braid") + draw.note(200, 138, "black swivel stops line twist"),
+            () => draw.line("M12 100 H108", COL.braid) + draw.line("M132 100 H300") + draw.swivel(120, 100) + draw.knot(142, 100) + draw.highlight(138, 100, 18)
+                + draw.dim(132, 300, 150, "18–24 in") + draw.note(40, 122, "braid") + draw.note(216, 122, "leader"),
+            () => draw.line("M12 100 H48", COL.braid) + draw.line("M72 100 H186") + draw.swivel(60, 100) + draw.line("M186 96 Q200 93 206 100 Q200 107 186 104")
+                + draw.knot(181, 100) + draw.spoon(206, 100, 1.3) + draw.highlight(198, 100, 22) + draw.label(198, 62, "split ring or loop knot"),
+            () => draw.line("M12 100 H36") + draw.spoon(46, 100, 2.6) + draw.line("M232 42 L212 54", COL.muted, 1.2) + draw.note(240, 34, "weedguard over the point")
+                + draw.check(276, 112) + draw.note(272, 136, "hangs straight"),
+            () => draw.water(52) + draw.line("M10 20 Q60 40 100 52 Q130 70 153 84", COL.leader, 3) + draw.spoon(158, 84, 1.1)
+                + draw.line("M200 66 l6 -7 M214 92 l7 5 M186 64 l0 -8", COL.gold, 2.5) + draw.arrow("M250 124 H170")
+                + draw.label(170, 162, "slow, steady retrieve") + draw.note(248, 40, "just under the surface")
+        ],
+        "fish-finder": [
+            () => draw.line("M12 100 H232", COL.braid) + draw.sinkerSlide(140, 100) + draw.pyramid(140, 120) + draw.highlight(140, 118, 32)
+                + draw.label(140, 76, "sinker slide") + draw.note(40, 122, "mainline") + draw.note(140, 172, "3–5oz pyramid or spider"),
+            () => draw.line("M12 100 H232", COL.braid) + draw.sinkerSlide(130, 100) + draw.pyramid(130, 120) + draw.bead(168, 100)
+                + draw.highlight(168, 100, 14) + draw.label(168, 74, "bead") + draw.note(226, 128, "protects the knot"),
+            () => draw.line("M12 100 H188", COL.braid) + draw.sinkerSlide(100, 100) + draw.pyramid(100, 120) + draw.bead(138, 100) + draw.swivel(200, 100)
+                + draw.knot(178, 100, COL.braid) + draw.highlight(184, 100, 20) + draw.label(184, 68, "Uni Knot"),
+            () => {
+                const w = draw.shankWraps(262, 108, 4, 5, COL.leader, 8);
+                return draw.circleHook(262, 100, 1.3) + w.back + draw.line("M60 100 H262 V128", COL.leader, 4) + w.front + draw.highlight(268, 118, 28)
+                    + draw.dim(60, 262, 72, "18–24 in") + draw.note(150, 122, "40–60lb leader") + draw.label(250, 172, "snelled circle hook");
+            },
+            () => {
+                const w = draw.shankWraps(262, 108, 4, 5, COL.leader, 8);
+                return draw.line("M12 100 H118", COL.braid) + draw.sinkerSlide(60, 100) + draw.pyramid(60, 120) + draw.bead(94, 100) + draw.swivel(130, 100)
+                    + draw.circleHook(262, 100, 1.3) + w.back + draw.line("M142 100 H262 V128", COL.leader, 4) + w.front + draw.knot(152, 100)
+                    + draw.baitChunk(276, 147) + draw.highlight(284, 118, 14) + draw.label(234, 84, "point stays exposed") + draw.note(262, 178, "cut mullet or crab");
+            },
+            () => draw.water(118) + `<path d="M0 200 V146 Q100 134 200 160 L246 200 Z" fill="${COL.sand}"/>`
+                + draw.line("M70 152 L64 184", COL.metal, 5) + draw.line("M70 152 L190 34", COL.dark, 4) + `<circle cx="92" cy="131" r="7" fill="${COL.dark}"/>`
+                + draw.line("M190 34 Q262 56 300 122", COL.leader, 1.8) + draw.note(124, 194, "rod in a sand spike")
+                + draw.label(244, 182, "reel steady, don't jerk")
+        ],
+        "high-low": [
+            () => pic.hlBase() + draw.highlight(140, 38, 18) + draw.label(166, 42, "Uni or Improved Clinch", "start")
+                + draw.note(160, 112, "about 3 ft of 30lb line", "start"),
+            () => pic.hlBase() + draw.dropperLoop(140, 80, 40) + draw.highlight(160, 80, 28) + draw.label(196, 84, "Dropper Loop", "start")
+                + draw.dimV(116, 40, 80, "8 in"),
+            () => pic.hlBase() + pic.hlLoops() + draw.highlight(160, 136, 28) + draw.label(196, 140, "second loop", "start")
+                + draw.dimV(116, 80, 136, "12 in"),
+            () => pic.hlBase() + pic.hlLoops() + pic.hlHooks() + draw.highlight(176, 86, 20)
+                + draw.note(126, 100, "loop through the eye,", "end") + draw.note(126, 116, "hook back through it", "end"),
+            () => pic.hlBase(162) + pic.hlLoops() + pic.hlHooks() + draw.knotV(140, 158) + draw.bankSinker(140, 166)
+                + draw.highlight(140, 182, 22) + draw.label(168, 188, "bank sinker", "start") + draw.note(150, 10, "tie mainline here", "start")
+        ],
+        "fg-knot": [
+            () => draw.finger(286, 70, 9) + draw.finger(246, 50, 9) + draw.line("M12 104 H250 L286 70 L246 50 L230 62", COL.braid)
+                + draw.line("M110 176 L196 110") + draw.arrow("M64 92 H22") + draw.note(42, 82, "to rod")
+                + draw.label(150, 30, "keep the braid tight") + draw.note(102, 172, "leader", "end") + draw.note(268, 128, "finger + thumb"),
+            () => {
+                const w = draw.weave(108, 140, 104);
+                return draw.finger(176, 60, 9) + draw.finger(150, 42, 9) + w.under + draw.line("M100 104 H308", COL.leader, 4.5) + draw.line("M12 104 H108", COL.braid)
+                    + w.over + draw.line("M144 104 L176 60 L150 42 L136 52", COL.braid) + draw.note(40, 124, "braid") + draw.note(286, 124, "leader")
+                    + draw.label(165, 176, "down one side, up, down the other");
+            },
+            () => {
+                const w = draw.weave(108, 212, 104);
+                return draw.finger(248, 60, 9) + draw.finger(222, 42, 9) + w.under + draw.line("M100 104 H308", COL.leader, 4.5) + draw.line("M12 104 H108", COL.braid)
+                    + w.over + draw.line("M216 104 L248 60 L222 42 L208 52", COL.braid) + draw.dim(104, 216, 140, "1/2–3/4 in")
+                    + draw.label(160, 180, "keep alternating, keep it tight");
+            },
+            () => {
+                const w = draw.weave(108, 212, 104);
+                return w.under + draw.line("M100 104 H308", COL.leader, 4.5) + draw.line("M12 104 H108", COL.braid) + w.over
+                    + draw.knot(94, 104, COL.braid, 5) + draw.line("M100 112 L108 126", COL.braid) + draw.highlight(94, 104, 18)
+                    + draw.label(160, 172, "6–8 half hitches around both lines");
+            },
+            () => {
+                const w = draw.weave(108, 212, 104, 7);
+                return w.under + draw.line("M100 104 H308", COL.leader, 4.5) + draw.line("M12 104 H108", COL.braid) + w.over + draw.knot(94, 104, COL.braid, 5)
+                    + draw.arrow("M60 88 H20") + draw.arrow("M262 122 H302") + draw.drops(160, 50) + draw.label(160, 176, "wet it, pull hard both ways");
+            },
+            () => {
+                const w = draw.weave(108, 212, 104, 7);
+                return w.under + draw.line("M104 104 H308", COL.leader, 4.5) + draw.line("M12 104 H108", COL.braid) + w.over + draw.knot(94, 104, COL.braid, 5)
+                    + draw.knot(70, 104, COL.braid, 4) + draw.line("M64 112 L58 120", COL.braid) + draw.scissors(42, 138, -60)
+                    + draw.check(270, 70) + draw.label(165, 176, "trim, finish with 3–4 half hitches");
+            }
+        ],
+        "dropper-loop": [
+            () => draw.line("M12 118 H128 C150 118 172 104 172 78 C172 50 140 50 140 78") + draw.over("M140 78 C140 100 150 112 176 118 H308")
+                + draw.label(156, 34, "make a loop"),
+            () => pic.dropperHole() + draw.line("M150 107 C140 70 145 44 158 44 C171 44 176 70 166 107")
+                + draw.note(158, 146, "center hole") + draw.label(158, 182, "wrap at least 5 times"),
+            () => pic.dropperHole() + draw.over("M152 104 C146 140 148 172 158 172 C168 172 170 140 164 104") + draw.arrow("M190 120 V160")
+                + draw.label(158, 194, "push the loop through the hole"),
+            () => pic.dropperHole() + draw.over("M152 104 C146 140 148 172 158 172 C168 172 170 140 164 104") + draw.finger(158, 174, 11)
+                + draw.note(176, 182, "hold it here", "start"),
+            () => draw.line("M12 110 H308") + draw.line("M154 116 C140 140 146 168 158 168 C170 168 176 140 162 116") + draw.knot(158, 110, COL.leader, 6)
+                + draw.arrow("M60 96 H20") + draw.arrow("M260 96 H300") + draw.drops(214, 46) + draw.label(158, 192, "loop stands off the line")
+        ],
+        "snell-knot": [
+            () => pic.snellHook() + draw.line("M310 18 C262 18 214 26 207 50 V150") + draw.label(92, 28, "lay it along the shank")
+                + draw.note(232, 112, "short end, tip", "start") + draw.note(232, 128, "past the bend", "start"),
+            () => pic.snellHook() + draw.line("M207 150 V52 C207 26 288 26 294 96 C300 170 232 188 193 152 V12")
+                + draw.label(92, 28, "pinch both to the shank") + draw.note(292, 190, "wide loop", "end"),
+            () => {
+                const w = draw.shankWraps(200, 58, 6, 8);
+                return pic.snellHook() + w.back + draw.line("M207 150 V50") + draw.line("M193 152 V12")
+                    + draw.line("M214 101 C262 108 290 160 244 178 C218 188 198 170 193 152") + w.front + draw.label(92, 28, "5–7 wraps toward the bend");
+            },
+            () => {
+                const w = draw.shankWraps(200, 54, 6, 6);
+                return pic.snellHook() + w.back + draw.line("M207 150 V50") + draw.line("M193 88 V18") + w.front
+                    + draw.arrow("M174 46 V14") + draw.label(104, 62, "pull the long end");
+            },
+            () => {
+                const w = draw.shankWraps(200, 54, 6, 6);
+                return pic.snellHook() + w.back + draw.line("M207 150 V50") + w.front + draw.line("M200 32 C214 6 270 6 312 10")
+                    + draw.scissors(232, 156, 180) + draw.label(100, 62, "through the eye, then trim") + draw.check(286, 100);
+            }
+        ],
+        "san-diego-jam": [
+            () => draw.line("M308 96 H75 A4 4 0 0 0 75 104 H230") + draw.hookSide(75, 100) + draw.dim(75, 230, 136, "8–10 in")
+                + draw.note(262, 86, "standing line") + draw.note(238, 108, "tag", "start"),
+            () => draw.finger(234, 87, 8) + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H226 C252 104 254 70 226 70 H196") + draw.hookSide(75, 100)
+                + draw.note(236, 130, "finger") + draw.label(150, 40, "loop the tag over a finger"),
+            () => {
+                const c = draw.coils(200, 100, 7, -12, COL.leader, 18);
+                return draw.finger(234, 87, 8) + c.back + draw.line(pic.sdjBase) + c.front + draw.line("M124 118 L114 132")
+                    + draw.hookSide(75, 100) + draw.label(160, 176, "7 wraps, working toward the eye");
+            },
+            () => {
+                const c = draw.coils(200, 100, 7, -12, COL.leader, 18);
+                return draw.finger(234, 87, 8) + c.back + draw.line(pic.sdjBase) + c.front
+                    + draw.over("M124 118 C114 124 108 110 110 100 C114 40 226 26 236 74") + draw.arrow("M222 34 Q238 44 240 62")
+                    + draw.hookSide(75, 100) + draw.note(165, 164, "between the lines below the wraps,") + draw.note(165, 180, "then up through the finger loop");
+            },
+            () => {
+                const c = draw.coils(118, 100, 7, -4, COL.leader, 13);
+                return c.back + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H122 V87") + c.front + draw.line("M90 113 L86 121") + draw.hookSide(75, 100)
+                    + draw.arrow("M220 82 H290") + draw.note(255, 72, "pull it snug") + draw.drops(180, 46) + draw.scissors(104, 142, -120)
+                    + draw.label(165, 182, "slide it snug, trim the tag");
+            }
+        ],
+        "improved-clinch": [
+            () => draw.line("M308 96 H75 A4 4 0 0 0 75 104 H190") + draw.hookSide(75, 100) + draw.dim(75, 190, 136, "about 6 in")
+                + draw.note(255, 86, "standing line") + draw.note(198, 108, "tag", "start"),
+            () => {
+                const c = draw.coils(124, 96, 6, 10, COL.leader, 12);
+                return pic.clinchBase(c) + draw.line("M170 108 L188 124") + draw.hookSide(75, 100)
+                    + draw.label(175, 48, "5–7 wraps, away from the eye") + draw.note(94, 130, "small loop");
+            },
+            () => {
+                const c = draw.coils(124, 96, 6, 10, COL.leader, 12);
+                return pic.clinchBase(c) + draw.over("M170 108 C178 150 102 150 96 112 L95 88") + draw.arrow("M82 138 V106")
+                    + draw.hookSide(75, 100) + draw.note(136, 132, "big loop") + draw.label(160, 184, "back through the small loop");
+            },
+            () => {
+                const c = draw.coils(124, 96, 6, 10, COL.leader, 12);
+                return pic.clinchBase(c) + draw.over("M170 108 C178 150 102 150 96 112 L95 88") + draw.over("M95 88 C100 58 150 62 140 124")
+                    + draw.arrow("M160 84 Q160 104 148 116") + draw.hookSide(75, 100) + draw.label(160, 184, "then through the big loop");
+            },
+            () => {
+                const c = draw.coils(86, 96, 6, 4, COL.leader, 10);
+                return c.back + draw.line("M308 96 H75 A4 4 0 0 0 75 104 H86 L90 86") + c.front + draw.line("M102 106 L108 116") + draw.hookSide(75, 100)
+                    + draw.arrow("M220 82 H290") + draw.note(255, 72, "pull the standing line") + draw.drops(180, 46) + draw.scissors(126, 136, -120)
+                    + draw.label(165, 182, "wet it, snug it down, trim");
+            }
+        ]
+    };
+
+    // App state
+    let activeType = "rigs";
+    let activeItems = appData.rigs;
+    let currentItemIndex = 0;
+    let currentStepIndex = 0;
+    let wakeLock = null;
+
+    // Species filter (remembered between visits on this phone)
+    const SPECIES = [["all", "All"], ["trout", "Trout"], ["redfish", "Redfish"], ["flounder", "Flounder"], ["drum", "Drum"]];
+    let speciesFilter = "all";
+    try { speciesFilter = localStorage.getItem("saltyrig-species") || "all"; } catch (err) { /* storage blocked; use All */ }
+    if (!SPECIES.some(([key]) => key === speciesFilter)) speciesFilter = "all";
+
+    function buildFilterBar() {
+        const bar = document.getElementById("filterBar");
+        bar.innerHTML = "";
+        SPECIES.forEach(([key, name]) => {
+            const chip = document.createElement("button");
+            chip.className = "filter-chip" + (key === speciesFilter ? " active" : "");
+            chip.textContent = name;
+            chip.setAttribute("aria-pressed", key === speciesFilter ? "true" : "false");
+            chip.onclick = () => setSpecies(key);
+            bar.appendChild(chip);
+        });
+    }
+
+    function setSpecies(key) {
+        speciesFilter = key;
+        try { localStorage.setItem("saltyrig-species", key); } catch (err) { /* not saved; filter still works */ }
+        buildFilterBar();
+        buildMenus();
+    }
+
+    // Shows the rigs for the chosen species, and only the knots those rigs use
+    function buildMenus() {
+        const all = speciesFilter === "all";
+        const rigIndexes = appData.rigs.map((_, i) => i).filter(i => all || (appData.rigs[i].species || []).includes(speciesFilter));
+        const usedKnots = new Set(rigIndexes.flatMap(i => appData.rigs[i].knots || []));
+        const knotIndexes = appData.knots.map((_, i) => i).filter(i => all || usedKnots.has(appData.knots[i].id));
+        buildMenu("rigs", "rigMenu", rigIndexes);
+        buildMenu("knots", "knotMenu", knotIndexes);
+        const name = (SPECIES.find(([key]) => key === speciesFilter) || SPECIES[0])[1];
+        document.getElementById("rigSectionTitle").innerText = all ? "Popular Rigs" : `Rigs for ${name}`;
+        document.getElementById("knotSectionTitle").innerText = all ? "Essential Knots" : "Knots for These Rigs";
+    }
+
+    function initApp() {
+        buildFilterBar();
+        buildMenus();
+        setupSwipe();
+        registerServiceWorker();
+
+        // Reopen the guide you were on if the page reloads
+        const state = history.state;
+        if (state && state.type && appData[state.type] && appData[state.type][state.index]) {
+            openGuide(state.type, state.index, state.step || 0, false);
+        }
+    }
+
+    function buildMenu(type, containerId, indexes = appData[type].map((_, i) => i)) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        indexes.forEach(index => {
+            const item = appData[type][index];
+            const btn = document.createElement("button");
+            btn.className = "menu-btn";
+
+            const text = document.createElement("span");
+            text.className = "menu-text";
+            const title = document.createElement("span");
+            title.textContent = item.title;
+            const sub = document.createElement("span");
+            sub.className = "menu-sub";
+            sub.textContent = item.subtitle.replace(/^(Targeting|Category):\s*/, "");
+            text.append(title, sub);
+
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = `${item.steps.length} steps`;
+
+            btn.append(text, tag);
+            btn.onclick = () => openGuide(type, index);
+            container.appendChild(btn);
+        });
+    }
+
+    function findById(id) {
+        for (const type of Object.keys(appData)) {
+            const index = appData[type].findIndex(item => item.id === id);
+            if (index !== -1) return { type, index };
+        }
+        return null;
+    }
+
+    function showView(viewId) {
+        document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
+        document.getElementById(viewId).classList.add("active");
+        window.scrollTo(0, 0);
+    }
+
+    // push = true adds a history entry so the phone's back button returns here
+    function openGuide(type, index, startStep = 0, push = true) {
+        activeType = type;
+        activeItems = appData[type];
+        currentItemIndex = index;
+        currentStepIndex = startStep;
+
+        if (push) {
+            const prev = history.state;
+            const from = (prev && prev.type === "rigs" && type === "knots") ? prev.index : null;
+            history.pushState({ type, index, step: startStep, from }, "");
+        }
+
+        renderStep();
+        showView("guideView");
+        requestWakeLock();
+    }
+
+    function showHome() {
+        showView("homeView");
+        releaseWakeLock();
+    }
+
+    // Back link, Done button and phone back button all go through history
+    function goBack() {
+        if (history.state && history.state.type) {
+            history.back();
+        } else {
+            showHome();
+        }
+    }
+
+    window.addEventListener("popstate", event => {
+        const state = event.state;
+        if (state && state.type && appData[state.type] && appData[state.type][state.index]) {
+            openGuide(state.type, state.index, state.step || 0, false);
+        } else {
+            showHome();
+        }
+    });
+
+    function renderStep() {
+        const item = activeItems[currentItemIndex];
+        const total = item.steps.length;
+        const isRig = activeType === "rigs";
+
+        document.getElementById("guideTitle").innerText = item.title;
+        document.getElementById("guideType").innerText = item.subtitle;
+        document.getElementById("materialsHeading").innerText = isRig ? "Required Gear" : "About This Knot";
+        document.getElementById("materialsList").innerText = item.materials;
+        document.getElementById("stepCounter").innerText = `Step ${currentStepIndex + 1} of ${total}`;
+        document.getElementById("stepDescription").innerText = item.steps[currentStepIndex];
+
+        // Picture for this step (hidden if a step doesn't have one yet)
+        const pictures = stepVisuals[item.id];
+        const drawStep = pictures && pictures[currentStepIndex];
+        document.getElementById("stepVisual").innerHTML = drawStep
+            ? svgWrap(drawStep(), `${item.title}, step ${currentStepIndex + 1}`)
+            : "";
+
+        const fill = document.getElementById("progressFill");
+        fill.style.width = `${((currentStepIndex + 1) / total) * 100}%`;
+        fill.classList.toggle("complete", currentStepIndex === total - 1);
+
+        renderKnotLinks(item, isRig);
+
+        // Back link says where it goes
+        const state = history.state;
+        const fromRig = state && state.from !== null && state.from !== undefined ? appData.rigs[state.from] : null;
+        document.getElementById("backNav").innerText = fromRig ? `← Back to ${fromRig.title}` : "← Back to Dashboard";
+
+        // Button logic rules
+        document.getElementById("backBtn").disabled = (currentStepIndex === 0);
+        const nextBtn = document.getElementById("nextBtn");
+        if (currentStepIndex === total - 1) {
+            nextBtn.innerText = "Done";
+            nextBtn.className = "btn btn-success";
+        } else {
+            nextBtn.innerText = "Next";
+            nextBtn.className = "btn btn-primary";
+        }
+
+        // Remember the step so back/reload lands on the same one
+        if (state && state.type === activeType && state.index === currentItemIndex) {
+            history.replaceState({ ...state, step: currentStepIndex }, "");
+        }
+    }
+
+    function renderKnotLinks(item, isRig) {
+        const box = document.getElementById("knotLinks");
+        box.innerHTML = "";
+        if (!isRig || !item.knots || item.knots.length === 0) {
+            box.classList.remove("visible");
+            return;
+        }
+        const label = document.createElement("span");
+        label.className = "label";
+        label.textContent = "Knots:";
+        box.appendChild(label);
+
+        item.knots.forEach(knotId => {
+            const found = findById(knotId);
+            if (!found) return;
+            const knot = appData[found.type][found.index];
+            const chip = document.createElement("button");
+            chip.className = "knot-chip";
+            chip.textContent = knot.title.replace(/^The\s+/, "");
+            chip.onclick = () => openGuide(found.type, found.index);
+            box.appendChild(chip);
+        });
+        box.classList.add("visible");
+    }
+
+    function nextStep() {
+        const item = activeItems[currentItemIndex];
+        if (currentStepIndex < item.steps.length - 1) {
+            currentStepIndex++;
+            renderStep();
+        } else {
+            goBack(); // Finished all steps: back to the rig you came from, or home
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            currentStepIndex--;
+            renderStep();
+        }
+    }
+
+    // Swipe left for next step, right for previous (never exits the guide)
+    function setupSwipe() {
+        const card = document.getElementById("guideCard");
+        let startX = 0, startY = 0;
+        card.addEventListener("touchstart", e => {
+            startX = e.changedTouches[0].clientX;
+            startY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        card.addEventListener("touchend", e => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+            const item = activeItems[currentItemIndex];
+            if (dx < 0 && currentStepIndex < item.steps.length - 1) {
+                currentStepIndex++;
+                renderStep();
+            } else if (dx > 0) {
+                prevStep();
+            }
+        }, { passive: true });
+    }
+
+    // Keep the screen from dimming while a guide is open (wet hands, no tapping)
+    async function requestWakeLock() {
+        try {
+            if ("wakeLock" in navigator && !wakeLock) {
+                wakeLock = await navigator.wakeLock.request("screen");
+                wakeLock.addEventListener("release", () => { wakeLock = null; });
+            }
+        } catch (err) {
+            wakeLock = null; // Not supported or not allowed; app works the same without it
+        }
+    }
+
+    function releaseWakeLock() {
+        if (wakeLock) {
+            wakeLock.release().catch(() => {});
+            wakeLock = null;
+        }
+    }
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && document.getElementById("guideView").classList.contains("active")) {
+            requestWakeLock();
+        }
+    });
+
+    // Real offline support: sw.js caches the app so it opens with no signal.
+    // Service workers only run from http(s), so this is skipped if the file is opened directly.
+    function registerServiceWorker() {
+        if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+            navigator.serviceWorker.register("sw.js").catch(() => {});
+        }
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>
