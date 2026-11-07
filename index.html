@@ -236,6 +236,8 @@
         .backup-msg:empty { display: none; }
         .save-to-log { width: 100%; margin-top: 10px; padding: 12px; font-size: 0.98rem; }
         .save-to-log[hidden] { display: none; }
+        .species-link { display: inline-flex; width: auto; align-self: flex-start; margin: 12px 0 18px; padding: 8px 14px; font-size: 0.88rem; }
+        .species-link[hidden] { display: none; }
     </style>
 </head>
 <body>
@@ -277,6 +279,7 @@
 
         <div class="section-title" id="rigSectionTitle">Popular Rigs</div>
         <div class="menu-grid" id="rigMenu"></div>
+        <button class="knot-chip species-link" id="speciesLink" hidden></button>
 
         <div class="section-title" id="knotSectionTitle">Essential Knots</div>
         <details class="words">
@@ -447,8 +450,8 @@
             {
                 id: "popping-cork",
                 title: "Popping Cork Rig",
-                subtitle: "Targeting: Speckled Trout & Redfish",
-                species: ["trout", "redfish"],
+                subtitle: "Targeting: Speckled Trout, Redfish, & Tripletail",
+                species: ["trout", "redfish", "tripletail"],
                 materials: "Popping cork, 20-30lb fluorocarbon leader, 1/16oz or 1/8oz jighead (or live bait hook), soft plastic lure or live shrimp.",
                 knots: ["uni-knot", "palomar-knot"],
                 steps: [
@@ -462,8 +465,8 @@
             {
                 id: "jig-lure",
                 title: "Leadhead Jig & Soft Plastic",
-                subtitle: "Targeting: Flounder, Trout, & Redfish",
-                species: ["flounder", "trout", "redfish"],
+                subtitle: "Targeting: Flounder, Trout, Redfish, & More",
+                species: ["flounder", "trout", "redfish", "sandtrout", "snook", "jacks"],
                 materials: "20lb fluorocarbon leader, 1/8oz to 1/4oz leadhead jig, paddle tail or straight tail soft plastic (e.g., MirrOlure Lil' John).",
                 knots: ["double-uni", "uni-knot", "loop-knot"],
                 steps: [
@@ -477,8 +480,8 @@
             {
                 id: "carolina-rig",
                 title: "Carolina / Bottom Rig",
-                subtitle: "Targeting: Drum, Flounder, & Surf Species",
-                species: ["drum", "flounder", "redfish"],
+                subtitle: "Targeting: Drum, Flounder, Gafftop, & Croaker",
+                species: ["blackdrum", "flounder", "redfish", "gafftop", "croaker"],
                 materials: "Egg sinker (1/2oz to 1oz), plastic bead, barrel swivel, 20lb fluorocarbon leader, circle hook.",
                 knots: ["uni-knot", "palomar-knot"],
                 steps: [
@@ -492,8 +495,8 @@
             {
                 id: "freeline-shrimp",
                 title: "Free-Lined Live Shrimp",
-                subtitle: "Targeting: Speckled Trout & Redfish",
-                species: ["trout", "redfish"],
+                subtitle: "Targeting: Trout, Redfish, Snook, & Tripletail",
+                species: ["trout", "redfish", "snook", "tripletail"],
                 materials: "20lb fluorocarbon leader, #1 to 1/0 live bait or Kahle hook, optional small split shot, live shrimp.",
                 knots: ["double-uni", "fg-knot", "uni-knot", "palomar-knot"],
                 steps: [
@@ -507,8 +510,8 @@
             {
                 id: "weedless-plastic",
                 title: "Weedless Soft Plastic",
-                subtitle: "Targeting: Redfish & Flounder in Grass and Shell",
-                species: ["redfish", "flounder"],
+                subtitle: "Targeting: Redfish, Flounder, & Snook in Grass and Shell",
+                species: ["redfish", "flounder", "snook"],
                 materials: "20lb fluorocarbon leader, 3/0 to 4/0 weighted swimbait hook (1/16 to 1/8oz), 4 to 5-inch paddle tail or jerk bait.",
                 knots: ["double-uni", "fg-knot", "palomar-knot", "san-diego-jam"],
                 steps: [
@@ -522,8 +525,8 @@
             {
                 id: "gold-spoon",
                 title: "Gold Spoon",
-                subtitle: "Targeting: Redfish",
-                species: ["redfish"],
+                subtitle: "Targeting: Redfish & Jack Crevalle",
+                species: ["redfish", "jacks"],
                 materials: "1/4 to 1/2oz gold weedless spoon, small black barrel swivel, 20lb fluorocarbon leader.",
                 knots: ["uni-knot", "loop-knot"],
                 steps: [
@@ -537,8 +540,8 @@
             {
                 id: "fish-finder",
                 title: "Fish-Finder Surf Rig",
-                subtitle: "Targeting: Bull Redfish & Black Drum in the Surf",
-                species: ["redfish", "drum"],
+                subtitle: "Targeting: Bull Redfish, Black Drum, & Gafftop in the Surf",
+                species: ["redfish", "blackdrum", "gafftop"],
                 materials: "Sinker slide, 3 to 5oz pyramid or spider sinker, plastic bead, heavy barrel swivel, 40 to 60lb leader, 7/0 to 9/0 circle hook, cut mullet or crab.",
                 knots: ["uni-knot", "snell-knot"],
                 steps: [
@@ -553,8 +556,8 @@
             {
                 id: "high-low",
                 title: "High-Low Bottom Rig",
-                subtitle: "Targeting: Drum, Sheepshead, & Whiting",
-                species: ["drum"],
+                subtitle: "Targeting: Sheepshead, Drum, Croaker, Whiting, & Pompano",
+                species: ["blackdrum", "sheepshead", "sandtrout", "croaker", "whiting", "pompano"],
                 materials: "About 3 ft of 30lb fluorocarbon or mono, barrel swivel, 2 small circle or Kahle hooks (#1 to 1/0), 1 to 3oz bank sinker, shrimp or fiddler crab.",
                 knots: ["uni-knot", "improved-clinch", "dropper-loop"],
                 steps: [
@@ -563,6 +566,51 @@
                     "Tie a second Dropper Loop about 12 inches below the first so the two hooks can't tangle.",
                     "Push each loop through a hook's eye, pass the hook back through the loop, and pull it snug.",
                     "Tie a bank sinker to the bottom end, then tie your mainline to the swivel."
+                ]
+            },
+            {
+                id: "knocker-rig",
+                title: "Knocker Rig",
+                subtitle: "Targeting: Sheepshead & Black Drum on Rocks and Pilings",
+                species: ["sheepshead", "blackdrum"],
+                materials: "Small barrel swivel, 18 to 24 in of 20 to 30lb fluorocarbon, egg sinker (about 1/4oz per 10 ft of water), 1/0 to 2/0 circle hook, fiddler crab or shrimp.",
+                knots: ["uni-knot", "snell-knot"],
+                steps: [
+                    "Tie a small barrel swivel to your mainline with a Uni Knot.",
+                    "Tie 18 to 24 inches of 20 to 30lb fluorocarbon to the other end of the swivel.",
+                    "Slide an egg sinker onto the leader. Use just enough weight to hold bottom: about 1/4oz for every 10 feet of water, more in strong current.",
+                    "Tie a 1/0 to 2/0 circle hook to the end of the leader with a Snell or Uni Knot.",
+                    "Let the sinker slide down so it rests right on the hook eye. Bait up and drop it straight down next to the rocks or pilings."
+                ]
+            },
+            {
+                id: "mackerel-spoon",
+                title: "Mackerel Spoon Rig",
+                subtitle: "Targeting: Spanish Mackerel & Bluefish",
+                species: ["spanish", "bluefish"],
+                materials: "Small dark barrel swivel, 18 to 24 in of 40lb mono or fluorocarbon, 1/2oz silver casting spoon (2 to 2.5 in long), long pliers. Optional: a short dark wire leader.",
+                knots: ["uni-knot", "loop-knot"],
+                steps: [
+                    "Tie a small, dark barrel swivel to your mainline with a Uni Knot. Mackerel bite at anything shiny, including swivels.",
+                    "Tie 18 to 24 inches of 40lb mono or fluorocarbon to the other end of the swivel.",
+                    "Tie the spoon on with a Non-Slip Loop Knot, or use its split ring, so it can wobble freely.",
+                    "If their teeth keep cutting you off, add 4 to 6 inches of light, dark wire between the leader and the spoon.",
+                    "Cast past the school, let it sink a second, and reel fast. Use pliers to unhook them; their teeth are sharp."
+                ]
+            },
+            {
+                id: "shark-rig",
+                title: "Surf Shark Rig",
+                subtitle: "Targeting: Blacktip & Bull Sharks from the Beach",
+                species: ["sharks"],
+                materials: "Heavy surf rod, sinker slide, bead, 2 heavy swivels, 8 to 10 ft of 80 to 100lb mono, 10 in of single-strand wire, circle hook, 4 to 8oz weight, cut bait, long pliers.",
+                knots: ["uni-knot"],
+                steps: [
+                    "Slide a sinker slide onto your mainline, add a bead, then tie on a heavy barrel swivel with a Uni Knot.",
+                    "Tie 8 to 10 feet of 80 to 100lb mono to the swivel. Shark skin is rough and wears through light line.",
+                    "Tie a heavy swivel to the end of the mono, then add about 10 inches of wire with a non-offset, non-stainless circle hook. Texas law requires it for sharks.",
+                    "Clip a 4 to 8oz pyramid or spider weight to the slide. Bait with a fresh chunk of croaker, whiting, or mullet, leaving the point showing.",
+                    "To release a shark, keep it in the water, not up on dry sand. Back the hook out with long pliers, or cut the wire close to the hook if it's deep."
                 ]
             }
         ],
@@ -942,7 +990,18 @@
         hlBase: (end = 176) => draw.line(`M140 34 V${end}`) + draw.line("M140 0 V10", COL.braid) + draw.swivelV(140, 22) + draw.knotV(140, 40),
         hlLoops: () => draw.dropperLoop(140, 80, 40) + draw.dropperLoop(140, 136, 40),
         hlHooks: () => draw.hook(180, 80, 0.6) + draw.hook(180, 136, 0.6),
-        weedlessHook: (bendD) => draw.line(`M57 86 H66 L72 118 H150 ${bendD}`, COL.metal, 3) + `<ellipse cx="96" cy="121" rx="11" ry="5.5" fill="${COL.lead}"/>`
+        weedlessHook: (bendD) => draw.line(`M57 86 H66 L72 118 H150 ${bendD}`, COL.metal, 3) + `<ellipse cx="96" cy="121" rx="11" ry="5.5" fill="${COL.lead}"/>`,
+        darkSwivel: (x, y) => draw.swivel(x, y).split(COL.metal).join(COL.dark),
+        // Silver casting spoon: split ring at x,y on the left, treble hook at the tail
+        silverSpoon: (x, y, s = 1) => {
+            const X = d => x + d * s, Y = d => y + d * s;
+            return `<path d="M${X(6)} ${y} Q${X(20)} ${Y(-11)} ${X(44)} ${Y(-10)} Q${X(66)} ${Y(-8)} ${X(68)} ${y} Q${X(66)} ${Y(8)} ${X(44)} ${Y(10)} Q${X(20)} ${Y(11)} ${X(6)} ${y} Z" fill="#e2e8f0" stroke="${COL.metal}" stroke-width="1.5"/>`
+                + `<path d="M${X(16)} ${Y(-4)} Q${X(34)} ${Y(-8)} ${X(54)} ${Y(-5)}" fill="none" stroke="#ffffff" stroke-width="${3 * s}" stroke-linecap="round"/>`
+                + draw.ring(x, y, 4 * s, COL.metal, 2.5) + draw.ring(X(72), y, 3.5 * s, COL.metal, 2.2)
+                + draw.line(`M${X(76)} ${y} H${X(92)} A${6 * s} ${6 * s} 0 0 0 ${X(92)} ${Y(-12)} H${X(88)}`, COL.metal, 2.5)
+                + draw.line(`M${X(92)} ${y} A${6 * s} ${6 * s} 0 0 1 ${X(92)} ${Y(12)} H${X(88)}`, COL.metal, 2.5)
+                + `<path d="M${X(84)} ${Y(-12)} l${5 * s} ${-2 * s} v${4 * s} Z M${X(84)} ${Y(12)} l${5 * s} ${-2 * s} v${4 * s} Z" fill="${COL.metal}"/>`;
+        }
     };
 
     // One drawing per step, in the same order as the steps above
@@ -1149,6 +1208,55 @@
                 + draw.note(126, 100, "loop through the eye,", "end") + draw.note(126, 116, "hook back through it", "end"),
             () => pic.hlBase(162) + pic.hlLoops() + pic.hlHooks() + draw.knotV(140, 158) + draw.bankSinker(140, 166)
                 + draw.highlight(140, 182, 22) + draw.label(168, 188, "bank sinker", "start") + draw.note(150, 10, "tie mainline here", "start")
+        ],
+        "knocker-rig": [
+            () => draw.line("M12 100 H188", COL.braid) + draw.swivel(200, 100) + draw.knot(178, 100, COL.braid) + draw.highlight(184, 100, 20)
+                + draw.label(184, 68, "Uni Knot") + draw.note(40, 122, "mainline") + draw.note(200, 138, "small barrel swivel"),
+            () => draw.line("M12 100 H108", COL.braid) + draw.line("M132 100 H300") + draw.swivel(120, 100) + draw.knot(142, 100) + draw.highlight(138, 100, 18)
+                + draw.dim(132, 300, 150, "18–24 in") + draw.note(40, 122, "mainline") + draw.note(216, 122, "20–30lb fluorocarbon"),
+            () => draw.line("M12 100 H48", COL.braid) + draw.line("M72 100 H300") + draw.swivel(60, 100) + draw.knot(82, 100) + draw.sinker(196, 100)
+                + draw.arrow("M296 72 H226") + draw.label(196, 136, "egg sinker") + draw.note(196, 154, "about 1/4oz per 10 ft of water"),
+            () => draw.line("M12 100 H48", COL.braid) + draw.line("M72 100 H262") + draw.swivel(60, 100) + draw.knot(82, 100) + draw.sinker(150, 100)
+                + draw.knot(252, 100) + draw.circleHook(262, 100, 1.1) + draw.highlight(274, 118, 30) + draw.label(262, 70, "Snell or Uni Knot")
+                + draw.note(150, 128, "sinker slides free") + draw.note(274, 166, "1/0 to 2/0 circle"),
+            () => draw.line("M12 100 H48", COL.braid) + draw.line("M72 100 H262") + draw.swivel(60, 100) + draw.knot(82, 100) + draw.sinker(240, 100)
+                + draw.circleHook(262, 100, 1.1) + draw.highlight(254, 100, 24) + draw.label(196, 62, "sinker rests on the hook eye")
+                + draw.arrow("M150 76 H214") + draw.note(160, 160, "drop it straight down by the rocks")
+        ],
+        "mackerel-spoon": [
+            () => draw.line("M12 100 H188", COL.braid) + pic.darkSwivel(200, 100) + draw.knot(178, 100, COL.braid) + draw.highlight(184, 100, 20)
+                + draw.label(184, 68, "Uni Knot") + draw.note(40, 122, "mainline") + draw.note(196, 138, "dark swivel, not shiny"),
+            () => draw.line("M12 100 H108", COL.braid) + draw.line("M132 100 H300") + pic.darkSwivel(120, 100) + draw.knot(142, 100) + draw.highlight(138, 100, 18)
+                + draw.dim(132, 300, 156, "18–24 in") + draw.note(40, 122, "mainline") + draw.note(224, 132, "40lb mono or fluorocarbon"),
+            () => draw.line("M12 100 H36", COL.braid) + pic.darkSwivel(48, 100) + draw.line("M60 100 H176") + draw.line("M176 96 Q190 93 196 100 Q190 107 176 104")
+                + draw.knot(171, 100) + pic.silverSpoon(196, 100) + draw.highlight(188, 100, 22) + draw.label(188, 62, "Non-Slip Loop Knot")
+                + draw.note(250, 138, "lets the spoon wobble"),
+            () => draw.line("M12 100 H36", COL.braid) + pic.darkSwivel(48, 100) + draw.line("M60 100 H120") + draw.knot(110, 100) + draw.ring(126, 100, 5, COL.dark, 2.5)
+                + draw.line("M131 100 H192", COL.dark, 2) + draw.line("M192 97 Q198 95 201 100 Q198 105 192 103", COL.dark, 2) + pic.silverSpoon(201, 100)
+                + draw.dim(131, 196, 70, "4–6 in wire") + draw.highlight(160, 100, 34) + draw.note(160, 150, "only if they keep cutting you off"),
+            () => draw.water(52) + draw.line("M10 20 Q60 40 100 52 Q120 66 134 84", COL.leader, 3) + pic.silverSpoon(138, 84, 0.9)
+                + draw.line("M248 70 l6 -8 M266 74 l8 -4 M232 68 l-2 -9", COL.metal, 2.5) + draw.arrow("M300 124 H200") + draw.arrow("M300 146 H214")
+                + draw.label(160, 180, "cast past the school, reel fast") + draw.note(250, 40, "fish busting bait")
+        ],
+        "shark-rig": [
+            () => draw.line("M12 100 H188", COL.braid) + draw.sinkerSlide(92, 100) + draw.bead(130, 100) + draw.swivel(200, 100) + draw.knot(178, 100, COL.braid)
+                + draw.highlight(184, 100, 20) + draw.label(184, 68, "Uni Knot") + draw.note(92, 138, "sinker slide") + draw.note(130, 76, "bead")
+                + draw.note(36, 122, "mainline"),
+            () => draw.line("M12 100 H108", COL.braid) + draw.line("M132 100 H300", COL.leader, 6) + draw.swivel(120, 100) + draw.knot(142, 100) + draw.highlight(138, 100, 18)
+                + draw.dim(132, 300, 150, "8–10 ft") + draw.note(216, 124, "80–100lb mono") + draw.note(216, 178, "shark skin wears through light line"),
+            () => draw.line("M12 100 H98", COL.leader, 6) + draw.knot(88, 100) + draw.swivel(110, 100) + draw.line("M122 100 H252", COL.dark, 2.5)
+                + `<rect x="126" y="95.5" width="12" height="9" rx="2" fill="${COL.dark}"/><rect x="240" y="95.5" width="12" height="9" rx="2" fill="${COL.dark}"/>`
+                + draw.circleHook(262, 100, 1.4) + draw.dim(122, 252, 70, "about 10 in of wire") + draw.highlight(280, 128, 32)
+                + draw.label(150, 160, "non-offset, non-stainless") + draw.label(150, 176, "circle hook (Texas law)") + draw.note(36, 122, "mono"),
+            () => draw.line("M12 100 H52", COL.braid) + draw.sinkerSlide(32, 100) + draw.pyramid(32, 120) + draw.bead(48, 100) + draw.swivel(66, 100)
+                + draw.line("M78 100 H148", COL.leader, 6) + draw.swivel(160, 100) + draw.line("M172 100 H252", COL.dark, 2.5) + draw.circleHook(262, 100, 1.3)
+                + draw.baitChunk(278, 149) + draw.highlight(286, 118, 14) + draw.label(234, 80, "point stays showing") + draw.note(54, 172, "4–8oz pyramid or spider", "start")
+                + draw.note(262, 186, "fresh cut bait"),
+            () => draw.water(70) + `<path d="M0 200 V168 Q120 158 320 176 V200 Z" fill="${COL.sand}"/>`
+                + `<path d="M62 128 Q120 104 200 116 L230 98 L226 120 Q248 124 262 110 L258 130 L264 150 Q248 138 226 140 Q160 154 92 146 Q70 142 62 128 Z" fill="#94a3b8"/>`
+                + `<path d="M132 110 L150 84 L162 113 Z" fill="#94a3b8"/><circle cx="80" cy="128" r="2.5" fill="${COL.text}"/>`
+                + draw.line("M28 96 L64 128", COL.dark, 2.5) + draw.scissors(28, 92, 40) + draw.note(160, 44, "keep it in the water")
+                + draw.note(70, 176, "pliers, or cut the wire near the hook", "start")
         ],
     };
 
@@ -1750,13 +1858,22 @@
     let wakeLock = null;
 
     // Species filter (remembered between visits on this phone)
-    const SPECIES = [["all", "All"], ["trout", "Trout"], ["redfish", "Redfish"], ["flounder", "Flounder"], ["drum", "Drum"]];
+    const SPECIES = [["all", "All"], ["trout", "Trout"], ["redfish", "Redfish"], ["flounder", "Flounder"], ["blackdrum", "Black Drum"],
+        ["sheepshead", "Sheepshead"], ["sandtrout", "Sand Trout"], ["croaker", "Croaker"], ["gafftop", "Gafftop"], ["whiting", "Whiting"],
+        ["pompano", "Pompano"], ["spanish", "Spanish Mackerel"], ["bluefish", "Bluefish"], ["jacks", "Jack Crevalle"],
+        ["tripletail", "Tripletail"], ["snook", "Snook"], ["sharks", "Sharks"]];
+    // Which fish page each tab links to for limits and season
+    const SPECIES_FISH = { trout: "spotted-seatrout", redfish: "red-drum", flounder: "southern-flounder", blackdrum: "black-drum", sheepshead: "sheepshead",
+        sandtrout: "sand-trout", croaker: "croaker", gafftop: "gafftopsail", whiting: "whiting", pompano: "pompano", spanish: "spanish-mackerel",
+        bluefish: "bluefish", jacks: "jack-crevalle", tripletail: "tripletail", snook: "snook", sharks: "blacktip-shark" };
     let speciesFilter = "all";
     try { speciesFilter = localStorage.getItem("saltyrig-species") || "all"; } catch (err) { /* storage blocked; use All */ }
+    if (speciesFilter === "drum") speciesFilter = "blackdrum"; // the old "Drum" tab is now "Black Drum"
     if (!SPECIES.some(([key]) => key === speciesFilter)) speciesFilter = "all";
 
     function buildFilterBar() {
         const bar = document.getElementById("filterBar");
+        const keepScroll = bar.scrollLeft;
         bar.innerHTML = "";
         SPECIES.forEach(([key, name]) => {
             const chip = document.createElement("button");
@@ -1766,6 +1883,23 @@
             chip.onclick = () => setSpecies(key);
             bar.appendChild(chip);
         });
+        // Keep the chosen tab in view (there are more tabs than fit across the screen)
+        bar.scrollLeft = keepScroll;
+        const active = bar.querySelector(".active");
+        if (active) {
+            const box = bar.getBoundingClientRect(), tab = active.getBoundingClientRect();
+            if (tab.left < box.left || tab.right > box.right) bar.scrollLeft += (tab.left - box.left) - (box.width - tab.width) / 2;
+        }
+    }
+
+    // Under the rig list: a link to the chosen fish's limits and best months
+    function updateSpeciesLink() {
+        const link = document.getElementById("speciesLink");
+        const f = speciesFilter !== "all" ? findFish(SPECIES_FISH[speciesFilter]) : null;
+        link.hidden = !f;
+        if (!f) return;
+        link.textContent = speciesFilter === "sharks" ? "Shark limits and rules ›" : `${f.name} limits and best months ›`;
+        link.onclick = () => openFish(f.id);
     }
 
     function setSpecies(key) {
@@ -1786,6 +1920,7 @@
         const name = (SPECIES.find(([key]) => key === speciesFilter) || SPECIES[0])[1];
         document.getElementById("rigSectionTitle").innerText = all ? "Popular Rigs" : `Rigs for ${name}`;
         document.getElementById("knotSectionTitle").innerText = all ? "Essential Knots" : "Knots for These Rigs";
+        updateSpeciesLink();
     }
 
     // ---------- TEXAS FISH & LIMITS ----------
@@ -2457,6 +2592,7 @@
         // Load the limits, the calendar and your log, then reopen whatever screen you were on if the page reloads
         Promise.all([loadRegulations(), loadCalendar(), loadCatches()]).then(() => {
             renderBitingEntry();
+            updateSpeciesLink();
             showState(history.state);
         });
     }
