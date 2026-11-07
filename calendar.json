@@ -1,0 +1,353 @@
+{
+  "title": "What's Biting",
+  "region": "Texas bays, written for the Galveston Bay area",
+  "lastChecked": "2026-11-07",
+  "note": "Typical patterns, not a promise. Cold fronts, rain, and water temperature can move fish a few weeks early or late.",
+  "scale": ["Slow", "Fair", "Good", "Hot"],
+  "pestScale": ["Few", "Some", "Lots", "Everywhere"],
+  "baitScale": ["Scarce", "Some", "Plenty", "Everywhere"],
+  "species": [
+    {
+      "id": "spotted-seatrout",
+      "ratings": [1, 2, 2, 3, 3, 3, 2, 2, 2, 3, 3, 1],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Deep holes, channels, bayous, and soft mud with scattered shell. On sunny afternoons after a front, they slide onto shallow mud flats to warm up.",
+          "bait": "Slow-sinking twitchbaits and soft plastics on light jigheads, worked very slowly.",
+          "rigs": ["jig-lure"],
+          "tip": "February is known for big trout around Galveston. Fish the warm days between cold fronts, and slow way down when the water is in the low 50s."
+        },
+        {
+          "months": [3, 4, 5],
+          "where": "Moving from winter spots to shorelines, shell reefs, and grass as the water warms. Prime time for a trophy trout.",
+          "bait": "Soft plastics, topwaters as it warms up, and live shrimp once bait shops have it again.",
+          "rigs": ["jig-lure", "popping-cork", "freeline-shrimp"],
+          "tip": "Find bait like mullet or shad along the shoreline. Big trout won't be far away."
+        },
+        {
+          "months": [6, 7, 8],
+          "where": "Shallow shorelines and grass early and late. In the heat of the day, deeper reefs, drop-offs, gas wells, the jetties, and the surf when it's calm and green.",
+          "bait": "Live shrimp or small croaker, and soft plastics.",
+          "rigs": ["popping-cork", "freeline-shrimp", "jig-lure"],
+          "tip": "Go at first light. By midday, move to deeper water near structure."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Under diving gulls in open water as shrimp leave the marsh, mostly October and November. Also on shorelines and reefs as the water cools.",
+          "bait": "Shrimp-style soft plastics under the birds, or live shrimp under a cork.",
+          "rigs": ["popping-cork", "jig-lure", "freeline-shrimp"],
+          "tip": "Best a day or two after a cool front. Trout under the birds are often small; bigger ones tend to hold along shorelines."
+        }
+      ]
+    },
+    {
+      "id": "red-drum",
+      "ratings": [2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Bayous, tidal creeks, rivers, and mud flats close to deep water. Cold snaps push lots of reds up the creeks.",
+          "bait": "Cut mullet or shrimp on the bottom, or soft plastics worked slowly.",
+          "rigs": ["carolina-rig", "jig-lure"],
+          "tip": "On cold mornings, wait for the afternoon sun to warm the shallows."
+        },
+        {
+          "months": [3, 4, 5],
+          "where": "Back on shallow shorelines, marsh edges, and oyster reefs as the water warms.",
+          "bait": "Gold spoons, soft plastics, and live or fresh shrimp.",
+          "rigs": ["gold-spoon", "weedless-plastic", "popping-cork"],
+          "tip": "Watch for wakes and tails in skinny water and cast past them."
+        },
+        {
+          "months": [6, 7, 8],
+          "where": "Shallow flats and marsh drains early, reefs and deeper edges at midday. By late August, big bull reds start gathering near the passes.",
+          "bait": "Live shrimp, finger mullet, small crabs, and spoons.",
+          "rigs": ["popping-cork", "freeline-shrimp", "gold-spoon"],
+          "tip": "Fish marsh drains on a moving tide, when bait gets flushed out."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Bull reds at the jetties, passes, and surf in September and October. Slot reds work marsh drains on falling tides and sometimes school under birds.",
+          "bait": "Cut mullet, live mullet, or blue crab for bull reds. Shrimp, spoons, and soft plastics in the bay.",
+          "rigs": ["fish-finder", "popping-cork", "gold-spoon"],
+          "tip": "Bull reds are over the 28-inch slot, so release them unless you use your Red Drum Tag. Circle hooks make releasing easy."
+        }
+      ]
+    },
+    {
+      "id": "southern-flounder",
+      "ratings": [1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 1],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Most adults have left for the Gulf to spawn. Some stay in deep holes, harbors, and boat basins.",
+          "bait": "Soft plastics on a jighead, dragged slowly along the bottom.",
+          "rigs": ["jig-lure"],
+          "tip": "Bites drop off once the water is in the 50s, but some big flounder stay around harbors."
+        },
+        {
+          "months": [3, 4, 5],
+          "where": "Coming back into the bays from the Gulf. Check marsh drains, drop-offs, and pilings.",
+          "bait": "Mud minnows, finger mullet, shrimp, or soft plastics on the bottom.",
+          "rigs": ["carolina-rig", "jig-lure"],
+          "tip": "Go slow. Flounder lie still and ambush bait instead of chasing it."
+        },
+        {
+          "months": [6, 7, 8],
+          "where": "Spread out along marsh drains, shorelines, reefs, and pilings, on sandy or muddy edges.",
+          "bait": "Mud minnows, finger mullet, shrimp, or scented soft plastics.",
+          "rigs": ["carolina-rig", "jig-lure", "weedless-plastic"],
+          "tip": "Fish the edges where a falling tide washes bait out of the marsh."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Heading for the Gulf. They gather in channels, along the ship channel, and at the passes and jetties.",
+          "bait": "Mud minnows, finger mullet, and soft plastics.",
+          "rigs": ["jig-lure", "carolina-rig"],
+          "tip": "A strong cold front can start a big push toward the passes. Check the closure dates before you keep any."
+        }
+      ]
+    },
+    {
+      "id": "black-drum",
+      "ratings": [2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Deeper water: channels, the ship channel, jetties, and the surf. Big \"bull\" drum gather at the jetties and passes in late winter.",
+          "bait": "Peeled shrimp, fresh crab with the shell off, or cut bait on the bottom.",
+          "rigs": ["high-low", "fish-finder", "carolina-rig"],
+          "tip": "February and March are prime for big drum. Drum from 30 to 52 inches go back."
+        },
+        {
+          "months": [3, 4, 5],
+          "where": "Big drum at the jetties and passes through March, then spreading through the bays on reefs and in channels.",
+          "bait": "Peeled shrimp, fresh crab, or cut bait.",
+          "rigs": ["high-low", "carolina-rig"],
+          "tip": "They find food by smell, so fresh bait beats lures."
+        },
+        {
+          "months": [6, 7, 8],
+          "where": "Schools of 1 to 4 pound drum in shallow water, around reefs, piers, and marsh edges.",
+          "bait": "Peeled shrimp or pieces of crab.",
+          "rigs": ["carolina-rig", "high-low"],
+          "tip": "Feeding schools stir up muddy patches in clear water. Cast to the edge of the mud."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Reefs, channels, and piers, moving deeper as the water cools.",
+          "bait": "Peeled shrimp or fresh crab.",
+          "rigs": ["carolina-rig", "high-low"],
+          "tip": "Smaller drum in the slot are the best eating."
+        }
+      ]
+    },
+    {
+      "id": "sheepshead",
+      "ratings": [2, 2, 3, 3, 1, 1, 1, 1, 1, 1, 2, 2],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Jetties, pilings, piers, docks, and rocks. They bunch up on structure as it gets cold.",
+          "bait": "Live or fresh shrimp, fiddler crabs, or barnacles on a small hook.",
+          "rigs": ["high-low"],
+          "tip": "They nibble. Use a small, strong hook and set it at the first weight you feel."
+        },
+        {
+          "months": [3, 4],
+          "where": "Moving out the passes in groups to spawn. Fish the jetties and piers near the passes.",
+          "bait": "Fiddler crabs or shrimp.",
+          "rigs": ["high-low"],
+          "tip": "March and April are the spawning run, the best time for big sheepshead."
+        },
+        {
+          "months": [5, 6, 7, 8, 9, 10, 11],
+          "where": "Back on bay structure: pilings, docks, oyster reefs, and rigs. Fewer big ones.",
+          "bait": "Shrimp, fiddler crabs, or barnacles.",
+          "rigs": ["high-low"],
+          "tip": "Fish right against the structure. A few feet away is too far."
+        }
+      ]
+    },
+    {
+      "id": "sand-trout",
+      "ratings": [2, 2, 3, 3, 2, 1, 1, 1, 2, 2, 2, 2],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Schools in deeper bay channels, the ship channel, and the passes.",
+          "bait": "Dead shrimp or cut bait on the bottom, or small jigs.",
+          "rigs": ["high-low", "jig-lure"],
+          "tip": "An easy fish for kids, with no size or bag limit."
+        },
+        {
+          "months": [3, 4, 5],
+          "where": "Big schools in the channels and near the passes as they get ready to spawn.",
+          "bait": "Shrimp, squid, or small jigs tipped with shrimp.",
+          "rigs": ["high-low", "jig-lure"],
+          "tip": "Spawning peaks in spring near the passes, so this is the best time for numbers."
+        },
+        {
+          "months": [6, 7, 8],
+          "where": "Many move offshore when the bay gets very hot. Try deep channels and nearshore structure.",
+          "bait": "Dead shrimp on the bottom.",
+          "rigs": ["high-low"],
+          "tip": "Fish early, or at night under lights near the passes."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Back in the bays, often mixed in with trout under diving birds.",
+          "bait": "Shrimp-style soft plastics or dead shrimp.",
+          "rigs": ["jig-lure", "high-low"],
+          "tip": "They don't freeze well, so eat them fresh."
+        }
+      ]
+    },
+    {
+      "id": "croaker",
+      "ratings": [1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Most have left the bays for the Gulf. A few stay in the deepest channels.",
+          "bait": "Small pieces of shrimp on the bottom.",
+          "rigs": ["high-low"],
+          "tip": "A slow time for croaker in the bay."
+        },
+        {
+          "months": [3, 4, 5, 6, 7, 8],
+          "where": "Back in the bays over soft, muddy bottom: channels, the Intracoastal, and piers.",
+          "bait": "Small pieces of shrimp or squid on the bottom.",
+          "rigs": ["high-low"],
+          "tip": "Small live croaker are also top bait for big trout in summer."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Big croaker gather and head out through the passes to the Gulf, usually peaking in October. Try the channels, the Intracoastal, and the jetties.",
+          "bait": "Shrimp or squid on the bottom.",
+          "rigs": ["high-low"],
+          "tip": "Old-timers say the croaker run comes just before the flounder run."
+        }
+      ]
+    },
+    {
+      "id": "gafftopsail",
+      "ratings": [0, 0, 1, 2, 3, 3, 3, 3, 2, 2, 1, 0],
+      "seasons": [
+        {
+          "months": [12, 1, 2, 3],
+          "where": "Few in the bays when the water is cold.",
+          "bait": "Shrimp or cut bait on the bottom, if you're after them.",
+          "rigs": ["carolina-rig"],
+          "tip": "Warm months are much better for gafftop."
+        },
+        {
+          "months": [4, 5, 6, 7, 8],
+          "where": "Bays, channels, passes, and the surf, feeding near the bottom and higher up.",
+          "bait": "Shrimp, cut mullet, small crabs, or pinfish.",
+          "rigs": ["fish-finder", "carolina-rig"],
+          "tip": "Males carry the eggs in their mouths in summer and may not eat for weeks. Watch the spines: sharp, with toxic slime."
+        },
+        {
+          "months": [9, 10, 11],
+          "where": "Still in the bays and surf. Larger fish are common in fall.",
+          "bait": "Cut mullet or shrimp.",
+          "rigs": ["fish-finder", "carolina-rig"],
+          "tip": "Use a strong hook and handle them with pliers or a towel."
+        }
+      ]
+    },
+    {
+      "id": "hardhead",
+      "kind": "pest",
+      "ratings": [0, 0, 1, 2, 3, 3, 3, 3, 3, 2, 1, 0],
+      "seasons": [
+        {
+          "months": [4, 5, 6, 7, 8, 9, 10],
+          "where": "Almost everywhere in the bay, especially on the bottom around piers and channels.",
+          "bait": "They'll eat any natural bait you put on the bottom.",
+          "rigs": ["popping-cork"],
+          "tip": "To dodge them, use lures or float your bait off the bottom under a cork."
+        },
+        {
+          "months": [11, 12, 1, 2, 3],
+          "where": "Usually far fewer around when the water is cold.",
+          "bait": "Any natural bait.",
+          "rigs": [],
+          "tip": "A good time for bottom fishing without the bait thieves."
+        }
+      ]
+    },
+    {
+      "id": "mullet",
+      "kind": "bait",
+      "ratings": [1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 2],
+      "seasons": [
+        {
+          "months": [10, 11, 12],
+          "where": "Big schools leave the bays to spawn in the Gulf, late October through December, moving through the passes and along the beach.",
+          "bait": "Prime time to throw a cast net for live or cut bait.",
+          "rigs": [],
+          "tip": "Predators follow the run. Bull reds, trout, and flounder feed hard on mullet now."
+        },
+        {
+          "months": [1, 2, 3, 4, 5],
+          "where": "Young mullet move into the marsh and back bays from January through May.",
+          "bait": "Fewer bait-size mullet around until summer.",
+          "rigs": [],
+          "tip": "The little ones in the marsh now will be finger mullet by summer."
+        },
+        {
+          "months": [6, 7, 8, 9],
+          "where": "Finger mullet along shorelines, marsh edges, and drains.",
+          "bait": "Cast net them for live bait for trout, reds, and flounder.",
+          "rigs": ["freeline-shrimp"],
+          "tip": "Hook a live finger mullet through the lips or behind the back fin. The Free-Lined rig works the same way as with shrimp."
+        }
+      ]
+    },
+    {
+      "id": "snook",
+      "lowerCoast": true,
+      "ratings": [1, 1, 2, 2, 3, 3, 3, 3, 3, 2, 2, 1],
+      "seasons": [
+        {
+          "months": [12, 1, 2],
+          "where": "Deep, protected water like the Brownsville Ship Channel and the South Padre and Boca Chica jetties.",
+          "bait": "Live shrimp or mullet, or slow soft plastics.",
+          "rigs": ["jig-lure", "freeline-shrimp"],
+          "tip": "Snook can't handle cold water, so they hide deep when it gets cold."
+        },
+        {
+          "months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+          "where": "Lower Laguna Madre shorelines, jetties, channels, and structure with strong current.",
+          "bait": "Live shrimp or mullet, and soft plastics.",
+          "rigs": ["weedless-plastic", "jig-lure", "freeline-shrimp"],
+          "tip": "Strong current and structure are the keys."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    { "title": "TPWD: Spotted Seatrout", "url": "https://tpwd.texas.gov/huntwild/wild/species/strout" },
+    { "title": "TPWD: Red Drum", "url": "https://tpwd.texas.gov/huntwild/wild/species/reddrum" },
+    { "title": "TPWD: Flounder Fishing in Texas", "url": "https://tpwd.texas.gov/fishboat/fish/didyouknow/coastal/flounderfishing.phtml" },
+    { "title": "TPWD: Black Drum", "url": "https://tpwd.texas.gov/huntwild/wild/species/blackdrum" },
+    { "title": "TPWD: Gafftopsail Catfish", "url": "https://tpwd.texas.gov/huntwild/wild/species/gafftop" },
+    { "title": "TPWD Field Notes: Sheepshead Biology", "url": "https://texassaltwaterfishingmagazine.com/fishing/education/texas-parks-wildlife-field-notes/sheepshead-biology-and-management-in-texas" },
+    { "title": "TPWD Field Notes: Texas' Other Seatrouts", "url": "https://www.texassaltwaterfishingmagazine.com/fishing/education/texas-parks-wildlife-field-notes/texas-other-seatrouts" },
+    { "title": "TPWD Field Notes: Sweet Mullet", "url": "https://www.texassaltwaterfishingmagazine.com/fishing/education/texas-parks-wildlife-field-notes/sweet-mullet" },
+    { "title": "Fishy Facts: Saltwater Cats", "url": "https://www.texassaltwaterfishingmagazine.com/fishing/education/fishy-facts/cats" },
+    { "title": "Bull Redfish Ruckus", "url": "https://www.texassaltwaterfishingmagazine.com/fishing/features/joe-richard/bull-redfish-ruckus" },
+    { "title": "Croaker Cravings", "url": "https://texassaltwaterfishingmagazine.com/fishing/features/joe-richard/croaker-cravings" },
+    { "title": "On Galveston: January 2008", "url": "https://www.texassaltwaterfishingmagazine.com/guides/mickey-galveston/on-galveston-january-2008" },
+    { "title": "On Galveston: November 2011", "url": "https://texassaltwaterfishingmagazine.com/guides/mickey-galveston/on-galveston-november-2011" },
+    { "title": "The Buzz: February 2016", "url": "https://texassaltwaterfishingmagazine.com/guides/the-buzz-galveston-bay/the-buzz-february-2016" },
+    { "title": "The Buzz: June 2017", "url": "https://www.texassaltwaterfishingmagazine.com/guides/the-buzz-on-galveston-bay/the-buzz-june-2017" },
+    { "title": "Houston Chronicle: Birds help point the way to fast fall fishing", "url": "https://www.pressreader.com/usa/houston-chronicle-sunday/20181104/282132112452481" },
+    { "title": "Coastal Forecast: Galveston, April", "url": "https://fishgame.com/2018/04/coastal-forecast-galveston-copy/" },
+    { "title": "Going Coastal: Snook", "url": "https://fishgame.com/2021/12/going-coastal-by-kelly-groce-3/" },
+    { "title": "Captain Experiences: Galveston fishing calendar", "url": "https://captainexperiences.com/locations/texas/galveston/seasonality" }
+  ]
+}

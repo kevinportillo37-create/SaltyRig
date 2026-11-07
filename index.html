@@ -148,6 +148,94 @@
         .fish-detail .where { font-size: 0.95rem; line-height: 1.45; }
         .rig-chips { display: flex; flex-wrap: wrap; gap: 6px; }
         .fine { font-size: 0.78rem; color: var(--text-muted); margin-top: 10px; line-height: 1.4; }
+
+        /* Home tiles: What's Biting and Catch Log */
+        .tile-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .tile { display: flex; flex-direction: column; gap: 4px; padding: 12px; background-color: var(--bg-card); border: 2px solid var(--border); border-top: 5px solid var(--accent-bright); border-radius: 16px; text-align: left; color: var(--text-main); cursor: pointer; box-shadow: 0 2px 8px rgba(107, 94, 80, 0.10); min-width: 0; }
+        .tile:active { background-color: var(--accent-soft); }
+        .tile.tile-log { border-top-color: var(--teal-bright); }
+        .tile.tile-log:active { background-color: var(--teal-soft); }
+        .tile-icon svg { width: 30px; height: 30px; display: block; }
+        .tile-title { font-size: 1.02rem; font-weight: 800; }
+        .tile-sub { font-size: 0.78rem; color: var(--text-muted); line-height: 1.3; }
+
+        /* What's Biting */
+        .month-bar { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 8px; background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 6px; margin-bottom: 10px; }
+        .month-bar button { height: 44px; border-radius: 10px; border: none; background-color: var(--accent-soft); color: var(--accent); font-size: 1.5rem; font-weight: 800; cursor: pointer; }
+        .month-name { text-align: center; font-size: 1.25rem; font-weight: 800; }
+        .month-name small { display: block; font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
+        .mine-box { background-color: var(--teal-soft); border-radius: 14px; padding: 12px 14px; margin-bottom: 12px; font-size: 0.92rem; line-height: 1.45; }
+        .mine-box h4 { font-size: 0.85rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .mine-box .btn { margin-top: 8px; padding: 10px 14px; font-size: 0.95rem; }
+        .bite-card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(107, 94, 80, 0.08); }
+        .bite-head { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; text-align: left; color: var(--text-main); cursor: pointer; padding: 0; }
+        .bite-thumb { width: 64px; flex: none; background-color: var(--picture-bg); border-radius: 8px; }
+        .bite-thumb svg { display: block; width: 100%; height: auto; }
+        .bite-name { flex-grow: 1; font-size: 1.05rem; font-weight: 800; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .bite-name small { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
+        .rate { flex: none; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .rate-3 { background-color: #fde0d6; color: #b4321a; }
+        .rate-2 { background-color: #dcfce7; color: #166534; }
+        .rate-1 { background-color: #fef3c7; color: #92400e; }
+        .rate-0 { background-color: #ede7df; color: #6b5e50; }
+        .pest.rate-3, .pest.rate-2 { background-color: #fef3c7; color: #92400e; }
+        .pest.rate-1, .pest.rate-0 { background-color: #dcfce7; color: #166534; }
+        .months-strip { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin: 10px 0 8px; }
+        .months-strip span { font-size: 0.62rem; font-weight: 800; text-align: center; padding: 3px 0; border-radius: 4px; color: #3f3326; }
+        .months-strip .m0 { background-color: #ede7df; }
+        .months-strip .m1 { background-color: #fde7c7; }
+        .months-strip .m2 { background-color: #fdba8c; }
+        .months-strip .m3 { background-color: #f2542d; color: #ffffff; }
+        .months-strip .now { outline: 2px solid var(--text-main); outline-offset: -1px; }
+        .bite-line { font-size: 0.9rem; line-height: 1.45; margin-top: 6px; }
+        .bite-line b { color: var(--teal); }
+        .bite-card .rig-chips { margin-top: 8px; }
+        .bite-card .badge { margin-top: 8px; text-transform: none; font-size: 0.78rem; }
+        .bite-you { margin-top: 8px; font-size: 0.85rem; font-weight: 700; color: var(--teal); }
+        .group-note { font-size: 0.8rem; color: var(--text-muted); margin: -4px 0 10px; }
+        .sources details { margin-top: 8px; }
+        .sources summary { font-weight: 800; color: var(--teal); cursor: pointer; font-size: 0.9rem; }
+        .sources li { font-size: 0.82rem; }
+        .sources a { color: var(--teal); }
+
+        /* Catch log */
+        .log-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
+        .log-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+        .log-stats div { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 8px; text-align: center; }
+        .log-stats b { display: block; font-size: 1.3rem; }
+        .log-stats span { font-size: 0.72rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; }
+        .catch-row { display: flex; align-items: center; gap: 12px; width: 100%; background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 8px 12px 8px 8px; margin-bottom: 8px; cursor: pointer; text-align: left; color: var(--text-main); }
+        .catch-row:active { background-color: var(--teal-soft); }
+        .catch-thumb { width: 72px; height: 54px; flex: none; border-radius: 8px; background-color: var(--picture-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .catch-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .catch-thumb svg { width: 100%; height: auto; display: block; }
+        .catch-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex-grow: 1; }
+        .catch-title { font-weight: 800; font-size: 1rem; }
+        .catch-meta { font-size: 0.8rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .badge-kept { background-color: #dcfce7; color: #166534; }
+        .badge-released { background-color: #e0f2fe; color: #075985; }
+        .empty-log { text-align: center; color: var(--text-muted); font-size: 0.92rem; padding: 18px 10px; line-height: 1.5; }
+        .form-card { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 16px; box-shadow: 0 4px 14px rgba(107, 94, 80, 0.10); }
+        .field { margin-bottom: 14px; }
+        .field label, .field .label { display: block; font-size: 0.85rem; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+        .field input, .field select, .field textarea { width: 100%; font-size: 1.05rem; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background-color: #ffffff; color: var(--text-main); }
+        .field textarea { min-height: 70px; resize: vertical; }
+        .field .verdict { margin-top: 8px; font-size: 0.92rem; }
+        .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .seg button { padding: 12px; border-radius: 12px; border: 2px solid var(--border); background-color: #ffffff; font-size: 1rem; font-weight: 800; color: var(--text-main); cursor: pointer; }
+        .seg button.on { background-color: var(--teal); border-color: var(--teal); color: #ffffff; }
+        .photo-box { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .photo-box img { width: 120px; height: 90px; object-fit: cover; border-radius: 10px; display: block; }
+        .photo-box .btn { padding: 10px 14px; font-size: 0.95rem; }
+        .form-buttons { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-top: 4px; }
+        .btn-danger { background-color: #ffffff; border: 2px solid #f3c2bf; color: #b91c1c; }
+        .btn-danger.armed { background-color: #b91c1c; border-color: #b91c1c; color: #ffffff; }
+        .backup-card { margin-top: 14px; }
+        .backup-card .btn { width: 100%; margin-top: 8px; padding: 12px; font-size: 0.98rem; }
+        .backup-msg { font-size: 0.85rem; font-weight: 700; color: var(--teal); margin-top: 8px; }
+        .backup-msg:empty { display: none; }
+        .save-to-log { width: 100%; margin-top: 10px; padding: 12px; font-size: 0.98rem; }
+        .save-to-log[hidden] { display: none; }
     </style>
 </head>
 <body>
@@ -169,6 +257,20 @@
             </span>
             <span class="fish-entry-arrow">›</span>
         </button>
+
+        <!-- What's biting this month, and your own catches -->
+        <div class="tile-row">
+            <button class="tile" id="bitingEntry" onclick="openBiting()">
+                <span class="tile-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="23" rx="4" fill="#ffe8df" stroke="#d63c1e" stroke-width="2"/><path d="M3 12h26" stroke="#d63c1e" stroke-width="2"/><path d="M10 3v6M22 3v6" stroke="#d63c1e" stroke-width="2.4" stroke-linecap="round"/><path d="M9 21c3-4 8-4 11 0-3 4-8 4-11 0zM20 21l4-3v6z" fill="#f97316"/></svg></span>
+                <span class="tile-title">What's Biting</span>
+                <span class="tile-sub" id="bitingEntrySub">Month by month for Texas bays</span>
+            </button>
+            <button class="tile tile-log" id="logEntry" onclick="openLog()">
+                <span class="tile-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="3" width="21" height="26" rx="3" fill="#e3f4f1" stroke="#0f766e" stroke-width="2"/><path d="M6 8H3M6 14H3M6 20H3M6 26H3" stroke="#0f766e" stroke-width="2" stroke-linecap="round"/><path d="M11 10h11M11 15h11M11 20h7" stroke="#0f766e" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <span class="tile-title">Catch Log</span>
+                <span class="tile-sub" id="logEntrySub">Log your first catch</span>
+            </button>
+        </div>
 
         <!-- Tap a species to see only its rigs and the knots they use -->
         <div class="filter-bar" id="filterBar" role="group" aria-label="Filter by species"></div>
@@ -210,8 +312,102 @@
 
     <!-- ONE FISH -->
     <div id="fishView" class="view">
-        <button class="back-nav" onclick="goBack()">← Back to All Fish</button>
+        <button class="back-nav" id="fishBack" onclick="goBack()">← Back to All Fish</button>
         <div class="fish-detail" id="fishDetail"></div>
+    </div>
+
+    <!-- WHAT'S BITING -->
+    <div id="bitingView" class="view">
+        <button class="back-nav" onclick="goBack()">← Back to Dashboard</button>
+        <h2 class="page-title">What's Biting</h2>
+        <p class="page-sub" id="bitingSub"></p>
+        <div class="month-bar">
+            <button id="prevMonth" aria-label="Previous month">‹</button>
+            <div class="month-name" id="monthName"></div>
+            <button id="nextMonth" aria-label="Next month">›</button>
+        </div>
+        <div id="mineBox"></div>
+        <div id="biteList"></div>
+        <div class="info-card sources">
+            <h4>How to read this</h4>
+            <p class="bite-line">Ratings are typical for the month: <b>Hot</b>, <b>Good</b>, <b>Fair</b>, or <b>Slow</b>. The strip shows the whole year, with this month outlined. Fronts and water temperature can shift things a few weeks either way.</p>
+            <details>
+                <summary>Where this comes from</summary>
+                <ul id="bitingSources"></ul>
+            </details>
+        </div>
+    </div>
+
+    <!-- CATCH LOG -->
+    <div id="logView" class="view">
+        <button class="back-nav" onclick="goBack()">← Back to Dashboard</button>
+        <h2 class="page-title">Catch Log</h2>
+        <p class="page-sub">Saved on this phone. Works with no signal.</p>
+        <div class="log-actions"><button class="btn btn-primary" id="addCatchBtn" onclick="openCatchForm()">+ Log a catch</button></div>
+        <div id="logStats"></div>
+        <div id="catchList"></div>
+        <div class="info-card backup-card">
+            <h4>Backup</h4>
+            <p class="bite-line">Your log only lives on this phone. Save a backup file now and then, so you don't lose it if you clear the app or get a new phone.</p>
+            <button class="btn btn-secondary" id="exportBtn">Save a backup file</button>
+            <button class="btn btn-secondary" id="importBtn">Restore from a backup file</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+            <div class="backup-msg" id="backupMsg" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <!-- ADD / EDIT A CATCH -->
+    <div id="logFormView" class="view">
+        <button class="back-nav" id="formBack" onclick="goBack()">← Back</button>
+        <h2 class="page-title" id="formTitle">Log a Catch</h2>
+        <div class="form-card">
+            <div class="field">
+                <label for="fSpecies">Fish</label>
+                <select id="fSpecies"></select>
+            </div>
+            <div class="field" id="otherField" hidden>
+                <label for="fOther">What fish?</label>
+                <input id="fOther" type="text" placeholder="Name of the fish">
+            </div>
+            <div class="field">
+                <label for="fLength">Length (inches)</label>
+                <input id="fLength" type="number" inputmode="decimal" min="0" step="0.25" placeholder="Optional">
+                <div class="verdict" id="fVerdict" aria-live="polite"></div>
+            </div>
+            <div class="field">
+                <span class="label">What you did</span>
+                <div class="seg" id="fKept">
+                    <button type="button" data-v="released">Released</button>
+                    <button type="button" data-v="kept">Kept</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="fDate">Date</label>
+                <input id="fDate" type="date">
+            </div>
+            <div class="field">
+                <label for="fSpot">Spot</label>
+                <input id="fSpot" type="text" list="spotList" placeholder="e.g. Sylvan Beach pier" autocomplete="off">
+                <datalist id="spotList"></datalist>
+            </div>
+            <div class="field">
+                <label for="fRig">Rig or bait</label>
+                <select id="fRig"></select>
+            </div>
+            <div class="field">
+                <span class="label">Photo</span>
+                <div class="photo-box" id="photoBox"></div>
+                <input type="file" id="fPhoto" accept="image/*" hidden>
+            </div>
+            <div class="field">
+                <label for="fNotes">Notes</label>
+                <textarea id="fNotes" placeholder="Tide, wind, water color, what they hit..."></textarea>
+            </div>
+            <div class="form-buttons">
+                <button class="btn btn-danger" id="deleteBtn" hidden>Delete</button>
+                <button class="btn btn-primary" id="saveBtn">Save</button>
+            </div>
+        </div>
     </div>
 
     <!-- INTERACTIVE GUIDE SCREEN -->
@@ -1702,7 +1898,12 @@
     }
 
     function openFish(id, push = true) {
-        if (push) history.pushState({ view: "fish", id }, "");
+        if (push) {
+            const prev = history.state;
+            const back = prev && prev.view === "biting" ? "Back to What's Biting" : "Back to All Fish";
+            history.pushState({ view: "fish", id, back }, "");
+        }
+        document.getElementById("fishBack").textContent = `← ${(history.state && history.state.back) || "Back to All Fish"}`;
         renderFish(id);
         showView("fishView");
         releaseWakeLock();
@@ -1742,11 +1943,13 @@
                 </div>
                 <div class="verdict" id="verdict" aria-live="polite"></div>
                 <p class="hint">Measure with the mouth closed and the tail pinched. ${esc(f.checkNote || "")}</p>
+                <button class="btn btn-secondary save-to-log" id="saveToLog">+ Save to Catch Log</button>
             </div>
             <h4>How to tell it apart</h4>
             <ul>${(f.idTips || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
             <h4>Where to find it</h4>
             <p class="where">${esc(f.where || "")}</p>
+            ${calFor(f.id) ? `<h4>Best months in the bay</h4>${monthStrip(calFor(f.id), new Date().getMonth())}<button class="knot-chip" id="seeBiting">See what's biting this month ›</button>` : ""}
             ${rigButtons ? `<h4>Rigs that catch it</h4><div class="rig-chips">${rigButtons}</div>` : ""}
             <a class="tpwd-link" href="${esc(f.source || regs.sourceUrl)}" target="_blank" rel="noopener">Official TPWD rules for this fish ↗</a>
             <p class="fine">Limits for ${esc(niceDate(regs.validFrom))} – ${esc(niceDate(regs.validThrough))}, last checked ${esc(niceDate(regs.lastChecked))}. TPWD can announce emergency changes, so check their site before a trip.</p>`;
@@ -1759,8 +1962,487 @@
         };
         document.getElementById("checkBtn").onclick = run;
         input.addEventListener("keydown", e => { if (e.key === "Enter") run(); });
-        box.querySelectorAll(".knot-chip").forEach(btn => {
+        document.getElementById("saveToLog").onclick = () => openCatchForm(null, { species: f.id, length: parseFloat(input.value) > 0 ? parseFloat(input.value) : "" });
+        const seeBiting = document.getElementById("seeBiting");
+        if (seeBiting) seeBiting.onclick = () => openBiting();
+        box.querySelectorAll(".knot-chip[data-type]").forEach(btn => {
             btn.onclick = () => openGuide(btn.dataset.type, Number(btn.dataset.index));
+        });
+    }
+
+    // ---------- WHAT'S BITING ----------
+    // Typical month-by-month patterns live in calendar.json, so they can be checked or updated without touching the app.
+    // Closures and seasonal limits still come from regulations.json, so there's only one place to update the rules.
+    let cal = null;
+    let bitingMonth = new Date().getMonth();
+    const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const MON1 = "JFMAMJJASOND";
+
+    function loadCalendar() {
+        return fetch("calendar.json", { cache: "no-cache" })
+            .then(res => { if (!res.ok) throw new Error(res.status); return res.json(); })
+            .then(data => { cal = data; })
+            .catch(() => { cal = null; });
+    }
+
+    const calFor = id => (cal && cal.species.find(s => s.id === id)) || null;
+    const seasonFor = (s, m) => s.seasons.find(x => x.months.includes(m + 1)) || s.seasons[0];
+    const scaleFor = s => (s.kind === "pest" ? cal.pestScale : s.kind === "bait" ? cal.baitScale : cal.scale);
+    const mdText = s => { const [mm, dd] = s.split("-").map(Number); return `${MONTHS[mm - 1].slice(0, 3)} ${dd}`; };
+    const rigButton = id => {
+        const found = findById(id);
+        return found ? `<button class="knot-chip" data-type="${found.type}" data-index="${found.index}">${esc(appData[found.type][found.index].title)}</button>` : "";
+    };
+    const monthStrip = (s, m) => `<div class="months-strip" role="img" aria-label="${esc(s.ratings.map((v, i) => `${MONTHS[i]} ${scaleFor(s)[v]}`).join(", "))}">${s.ratings.map((v, i) => `<span class="m${v}${i === m ? " now" : ""}">${MON1[i]}</span>`).join("")}</div>`;
+
+    // Closures and seasonal limits that apply on any day of month m (0 = January)
+    function rulesInMonth(f, m, year = new Date().getFullYear()) {
+        const rules = [...(f.closures || []).map(r => ({ ...r, kind: "closed" })), ...(f.seasonal || []).map(r => ({ ...r, kind: "season" }))];
+        const days = new Date(year, m + 1, 0).getDate();
+        return rules.filter(r => { for (let d = 1; d <= days; d++) if (inRange(new Date(year, m, d, 12), r.from, r.to)) return true; return false; });
+    }
+
+    function bitingItems() {
+        return cal.species.map((s, i) => ({ s, i, f: findFish(s.id) })).filter(x => x.f);
+    }
+    // Top picks for the home tile skip fish you can't keep at all that month (like flounder in November)
+    const closedAllMonth = (f, m, year = new Date().getFullYear()) => {
+        const days = new Date(year, m + 1, 0).getDate();
+        for (let d = 1; d <= days; d++) if (!activeClosure(f, new Date(year, m, d, 12))) return false;
+        return true;
+    };
+    function topSpecies(m, n = 3) {
+        return bitingItems().filter(x => !x.s.kind && !x.s.lowerCoast && !closedAllMonth(x.f, m))
+            .sort((a, b) => b.s.ratings[m] - a.s.ratings[m] || a.i - b.i).slice(0, n).map(x => x.f.name);
+    }
+
+    function renderBitingEntry() {
+        const sub = document.getElementById("bitingEntrySub");
+        if (!cal || !regs) { sub.textContent = "Open once with signal to load it"; return; }
+        const m = new Date().getMonth();
+        sub.textContent = `${MONTHS[m]}: ${topSpecies(m).join(", ")}`;
+    }
+
+    function openBiting(m = new Date().getMonth(), push = true) {
+        bitingMonth = m;
+        if (push) history.pushState({ view: "biting", m }, "");
+        renderBiting();
+        showView("bitingView");
+        releaseWakeLock();
+    }
+
+    function setBitingMonth(m) {
+        bitingMonth = (m + 12) % 12;
+        if (history.state && history.state.view === "biting") history.replaceState({ ...history.state, m: bitingMonth }, "");
+        renderBiting();
+        window.scrollTo(0, 0);
+    }
+
+    function renderBiting() {
+        const m = bitingMonth, list = document.getElementById("biteList");
+        const thisMonth = new Date().getMonth();
+        document.getElementById("monthName").innerHTML = `${MONTHS[m]}<small>${m === thisMonth ? "This month" : `${MONTHS[thisMonth]} is this month`}</small>`;
+        if (!cal || !regs) {
+            document.getElementById("mineBox").innerHTML = "";
+            list.innerHTML = `<div class="notice notice-stale">This hasn't loaded yet. Open the app once with signal and it'll be saved for offline use.</div>`;
+            return;
+        }
+        document.getElementById("bitingSub").textContent = `${cal.region}. Last checked ${niceDate(cal.lastChecked)}.`;
+        renderMineBox(m);
+
+        const items = bitingItems();
+        const byRating = arr => arr.sort((a, b) => b.s.ratings[m] - a.s.ratings[m] || a.i - b.i);
+        const section = (title, arr, note = "") => arr.length
+            ? `<div class="section-title">${title}</div>${note ? `<p class="group-note">${note}</p>` : ""}${arr.map(x => biteCard(x, m)).join("")}` : "";
+        list.innerHTML = section("Fish to target", byRating(items.filter(x => !x.s.kind && !x.s.lowerCoast)))
+            + section("Bait and bait thieves", items.filter(x => x.s.kind))
+            + section("Lower coast only", items.filter(x => x.s.lowerCoast), "Mostly the Lower Laguna Madre and Brownsville area. Rare around Galveston.");
+
+        list.querySelectorAll(".bite-head").forEach(btn => { btn.onclick = () => openFish(btn.dataset.fish); });
+        list.querySelectorAll(".knot-chip").forEach(btn => { btn.onclick = () => openGuide(btn.dataset.type, Number(btn.dataset.index)); });
+        document.getElementById("bitingSources").innerHTML = cal.sources
+            .map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join("");
+    }
+
+    function biteCard({ s, f }, m) {
+        const r = s.ratings[m], season = seasonFor(s, m);
+        const kindLabel = s.kind === "pest" ? "Bait thief" : s.kind === "bait" ? "Bait" : "";
+        const rules = rulesInMonth(f, m).map(rule => rule.kind === "closed"
+            ? `<span class="badge badge-closed">Closed to keeping ${mdText(rule.from)} – ${mdText(rule.to)}</span>`
+            : `<span class="badge badge-season">${esc(rule.note)}</span>`).join(" ");
+        const rigs = (season.rigs || []).map(rigButton).join("");
+        const mine = catchesInMonth(m).filter(c => c.species === s.id).length;
+        return `<div class="bite-card" data-id="${esc(s.id)}">
+            <button class="bite-head" data-fish="${esc(f.id)}">
+                <span class="bite-thumb">${fishArt(f.id, f.name)}</span>
+                <span class="bite-name">${esc(f.name)}${kindLabel ? `<small>${kindLabel}</small>` : ""}</span>
+                <span class="rate rate-${r}${s.kind === "pest" ? " pest" : ""}">${esc(scaleFor(s)[r])}</span>
+            </button>
+            ${monthStrip(s, m)}
+            <p class="bite-line"><b>Where:</b> ${esc(season.where)}</p>
+            <p class="bite-line"><b>Bait:</b> ${esc(season.bait)}</p>
+            <p class="bite-line"><b>Tip:</b> ${esc(season.tip)}</p>
+            ${rules}
+            ${rigs ? `<div class="rig-chips">${rigs}</div>` : ""}
+            ${mine ? `<div class="bite-you">Your log: ${mine} caught in ${MONTHS[m]}</div>` : ""}
+        </div>`;
+    }
+
+    const mostCommon = arr => {
+        const counts = new Map();
+        arr.forEach(v => counts.set(v, (counts.get(v) || 0) + 1));
+        let best = null, n = 0;
+        counts.forEach((c, v) => { if (c > n) { best = v; n = c; } });
+        return best;
+    };
+
+    // "Your November catches": what has worked for you in this month, any year
+    function renderMineBox(m) {
+        const box = document.getElementById("mineBox"), list = catchesInMonth(m);
+        if (!list.length) {
+            box.innerHTML = `<div class="mine-box"><h4>Your ${MONTHS[m]} catches</h4>${catches.length
+                ? `Nothing logged in ${MONTHS[m]} yet.`
+                : "Log your catches, and this box will show what has worked for you each month."}<br><button class="btn btn-primary" id="mineAdd">+ Log a catch</button></div>`;
+            document.getElementById("mineAdd").onclick = () => openCatchForm();
+            return;
+        }
+        const counts = new Map();
+        list.forEach(c => counts.set(speciesName(c), (counts.get(speciesName(c)) || 0) + 1));
+        const kinds = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name, n]) => `${n} ${name}`).join(", ");
+        const rig = mostCommon(list.map(c => c.rig).filter(Boolean));
+        const spot = mostCommon(list.map(c => (c.spot || "").trim()).filter(Boolean));
+        const years = new Set(list.map(c => c.date.slice(0, 4))).size;
+        box.innerHTML = `<div class="mine-box"><h4>Your ${MONTHS[m]} catches</h4>${list.length} logged${years > 1 ? ` over ${years} years` : ""}: ${esc(kinds)}.`
+            + `${rig ? ` Most caught on: <b>${esc(rigName(rig))}</b>.` : ""}${spot ? ` Top spot: <b>${esc(spot)}</b>.` : ""}</div>`;
+    }
+
+    // ---------- CATCH LOG ----------
+    // Saved in the phone's own storage (IndexedDB), photos included. Nothing is sent anywhere.
+    let catches = [];
+    const photoUrls = new Map();
+
+    const logDb = (() => {
+        let opening = null;
+        const open = () => opening || (opening = new Promise((resolve, reject) => {
+            try {
+                const req = indexedDB.open("saltyrig", 1);
+                req.onupgradeneeded = () => req.result.createObjectStore("catches", { keyPath: "id" });
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            } catch (err) { reject(err); }
+        }));
+        const run = (mode, work) => open().then(db => new Promise((resolve, reject) => {
+            const tx = db.transaction("catches", mode);
+            const req = work(tx.objectStore("catches"));
+            tx.oncomplete = () => resolve(req.result);
+            tx.onerror = () => reject(tx.error);
+            tx.onabort = () => reject(tx.error);
+        }));
+        return {
+            all: () => run("readonly", store => store.getAll()),
+            put: item => run("readwrite", store => store.put(item)),
+            remove: id => run("readwrite", store => store.delete(id))
+        };
+    })();
+
+    function loadCatches() {
+        return logDb.all()
+            .then(list => { catches = list || []; sortCatches(); })
+            .catch(() => { catches = []; })
+            .then(renderLogEntry);
+    }
+
+    const sortCatches = () => catches.sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.created || 0) - (a.created || 0));
+    const catchesInMonth = m => catches.filter(c => c.date && Number(c.date.slice(5, 7)) === m + 1);
+    const speciesName = c => c.species === "other" ? (c.other || "Other fish") : ((findFish(c.species) || {}).name || "Fish");
+    const rigName = id => {
+        if (id === "lure") return "Other lure";
+        if (id === "bait") return "Other bait";
+        const found = findById(id);
+        return found ? appData[found.type][found.index].title : "";
+    };
+    const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+    const shortDate = s => parseDay(s).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    const photoUrl = c => {
+        if (!c.photo) return "";
+        if (!photoUrls.has(c.id)) photoUrls.set(c.id, URL.createObjectURL(c.photo));
+        return photoUrls.get(c.id);
+    };
+    const forgetPhotoUrl = id => { if (photoUrls.has(id)) { URL.revokeObjectURL(photoUrls.get(id)); photoUrls.delete(id); } };
+    // Ask the phone not to clear the log when it's low on space (it may say no; the log still works)
+    const keepStorage = () => { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (err) {} };
+
+    function renderLogEntry() {
+        const sub = document.getElementById("logEntrySub");
+        sub.textContent = catches.length
+            ? `${catches.length} catch${catches.length === 1 ? "" : "es"} · last ${shortDate(catches[0].date)}`
+            : "Log your first catch";
+    }
+
+    function openLog(push = true) {
+        if (push) history.pushState({ view: "log" }, "");
+        renderLog();
+        showView("logView");
+        releaseWakeLock();
+    }
+
+    function renderLog() {
+        const kept = catches.filter(c => c.kept === "kept").length;
+        const kinds = new Set(catches.map(c => speciesName(c))).size;
+        document.getElementById("logStats").innerHTML = catches.length
+            ? `<div class="log-stats"><div><b>${catches.length}</b><span>Catches</span></div><div><b>${kinds}</b><span>Species</span></div><div><b>${kept}</b><span>Kept</span></div></div>` : "";
+        const list = document.getElementById("catchList");
+        if (!catches.length) {
+            list.innerHTML = `<div class="empty-log">No catches yet. Tap <b>+ Log a catch</b> after your next fish.<br>Your catches will also show up on What's Biting for that month.</div>`;
+            return;
+        }
+        let html = "", lastGroup = "";
+        catches.forEach(c => {
+            const group = c.date.slice(0, 7);
+            if (group !== lastGroup) {
+                lastGroup = group;
+                html += `<div class="section-title">${MONTHS[Number(group.slice(5, 7)) - 1]} ${group.slice(0, 4)}</div>`;
+            }
+            const thumb = c.photo ? `<img src="${photoUrl(c)}" alt="">` : fishArt(c.species, speciesName(c));
+            const meta = [shortDate(c.date), c.spot, c.rig ? rigName(c.rig) : ""].filter(Boolean).map(esc).join(" · ");
+            const badge = c.kept === "kept" ? `<span class="badge badge-kept">Kept</span>` : c.kept === "released" ? `<span class="badge badge-released">Released</span>` : "";
+            html += `<button class="catch-row" data-id="${esc(c.id)}"><span class="catch-thumb">${thumb}</span><span class="catch-text">`
+                + `<span class="catch-title">${esc(speciesName(c))}${c.length ? ` · ${esc(c.length)} in` : ""}</span><span class="catch-meta">${meta}</span>${badge}</span></button>`;
+        });
+        list.innerHTML = html;
+        list.querySelectorAll(".catch-row").forEach(row => { row.onclick = () => openCatchForm(row.dataset.id); });
+    }
+
+    // ---- Add or edit one catch ----
+    let editing = null;       // the catch being edited, or null for a new one
+    let formPhoto = null;     // the photo (a Blob) chosen in the form
+    let formPhotoUrl = "";
+
+    function openCatchForm(id = null, preset = {}, push = true) {
+        const existing = id ? catches.find(c => c.id === id) : null;
+        if (push) {
+            const prev = history.state;
+            let back = "Back to Dashboard";
+            if (prev && prev.view === "log") back = "Back to Catch Log";
+            else if (prev && prev.view === "biting") back = "Back to What's Biting";
+            else if (prev && prev.view === "fish" && findFish(prev.id)) back = `Back to ${findFish(prev.id).name}`;
+            history.pushState({ view: "logForm", id: existing ? existing.id : null, back }, "");
+        }
+        document.getElementById("formBack").textContent = `← ${(history.state && history.state.back) || "Back"}`;
+        fillCatchForm(existing, preset);
+        showView("logFormView");
+        releaseWakeLock();
+    }
+
+    function fillCatchForm(existing, preset) {
+        editing = existing;
+        const c = existing || {};
+        document.getElementById("formTitle").textContent = existing ? "Edit Catch" : "Log a Catch";
+
+        const species = document.getElementById("fSpecies");
+        species.innerHTML = (regs ? regs.groups.map(g => `<optgroup label="${esc(g.name)}">${regs.fish.filter(f => f.group === g.id)
+            .map(f => `<option value="${esc(f.id)}">${esc(f.name)}</option>`).join("")}</optgroup>`).join("") : "")
+            + `<option value="other">Other fish</option>`;
+        const lastUsed = catches.length ? catches[0].species : "spotted-seatrout";
+        species.value = c.species || preset.species || lastUsed;
+        if (!species.value) species.value = "other";
+        document.getElementById("fOther").value = c.other || "";
+
+        document.getElementById("fLength").value = c.length || preset.length || "";
+        document.getElementById("fDate").value = c.date || todayStr();
+        document.getElementById("fSpot").value = c.spot || "";
+        document.getElementById("spotList").innerHTML = [...new Set(catches.map(x => (x.spot || "").trim()).filter(Boolean))]
+            .map(s => `<option value="${esc(s)}">`).join("");
+
+        const rig = document.getElementById("fRig");
+        rig.innerHTML = `<option value="">Not sure / skip</option>`
+            + appData.rigs.map(r => `<option value="${esc(r.id)}">${esc(r.title)}</option>`).join("")
+            + `<option value="lure">Other lure</option><option value="bait">Other bait</option>`;
+        rig.value = c.rig || "";
+
+        setKept(c.kept || "released");
+        document.getElementById("fNotes").value = c.notes || "";
+        setFormPhoto(c.photo || null);
+
+        const del = document.getElementById("deleteBtn");
+        del.hidden = !existing;
+        del.classList.remove("armed");
+        del.textContent = "Delete";
+        document.querySelector(".form-buttons").style.gridTemplateColumns = existing ? "" : "1fr";
+        updateFormVerdict();
+    }
+
+    function setKept(value) {
+        document.querySelectorAll("#fKept button").forEach(b => b.classList.toggle("on", b.dataset.v === value));
+    }
+    const keptValue = () => (document.querySelector("#fKept button.on") || {}).dataset?.v || "released";
+
+    function updateFormVerdict() {
+        const id = document.getElementById("fSpecies").value;
+        document.getElementById("otherField").hidden = id !== "other";
+        const f = findFish(id), len = parseFloat(document.getElementById("fLength").value);
+        const day = document.getElementById("fDate").value;
+        const result = f ? checkFish(f, len, day ? new Date(`${day}T12:00:00`) : new Date()) : null;
+        const box = document.getElementById("fVerdict");
+        box.className = "verdict" + (result ? ` ${result.keep === true ? "keep" : result.keep === "tag" ? "tag" : "release"}` : "");
+        box.textContent = result ? result.text : "";
+    }
+
+    function setFormPhoto(blob) {
+        if (formPhotoUrl) URL.revokeObjectURL(formPhotoUrl);
+        formPhoto = blob;
+        formPhotoUrl = blob ? URL.createObjectURL(blob) : "";
+        const box = document.getElementById("photoBox");
+        box.innerHTML = blob
+            ? `<img src="${formPhotoUrl}" alt="Your catch"><button type="button" class="btn btn-secondary" id="photoChange">Change</button><button type="button" class="btn btn-secondary" id="photoRemove">Remove</button>`
+            : `<button type="button" class="btn btn-secondary" id="photoAdd">+ Add a photo</button>`;
+        const pick = () => document.getElementById("fPhoto").click();
+        if (blob) {
+            document.getElementById("photoChange").onclick = pick;
+            document.getElementById("photoRemove").onclick = () => setFormPhoto(null);
+        } else {
+            document.getElementById("photoAdd").onclick = pick;
+        }
+    }
+
+    // Phone photos are huge; shrink to 1280px wide so the log stays small
+    function shrinkPhoto(file) {
+        return new Promise(resolve => {
+            const url = URL.createObjectURL(file), img = new Image();
+            img.onload = () => {
+                const scale = Math.min(1, 1280 / Math.max(img.naturalWidth, img.naturalHeight));
+                const canvas = document.createElement("canvas");
+                canvas.width = Math.round(img.naturalWidth * scale);
+                canvas.height = Math.round(img.naturalHeight * scale);
+                canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+                URL.revokeObjectURL(url);
+                canvas.toBlob(blob => resolve(blob || file), "image/jpeg", 0.82);
+            };
+            img.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+            img.src = url;
+        });
+    }
+
+    function saveCatch() {
+        const species = document.getElementById("fSpecies").value;
+        const length = parseFloat(document.getElementById("fLength").value);
+        const date = document.getElementById("fDate").value || todayStr();
+        const f = findFish(species);
+        const result = f && length > 0 ? checkFish(f, length, new Date(`${date}T12:00:00`)) : null;
+        const item = {
+            id: editing ? editing.id : `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`,
+            created: editing ? editing.created : Date.now(),
+            species,
+            other: species === "other" ? document.getElementById("fOther").value.trim() : "",
+            length: length > 0 ? length : null,
+            date,
+            spot: document.getElementById("fSpot").value.trim(),
+            rig: document.getElementById("fRig").value,
+            kept: keptValue(),
+            verdict: result ? (result.keep === true ? "keep" : result.keep === "tag" ? "tag" : "release") : null,
+            notes: document.getElementById("fNotes").value.trim(),
+            photo: formPhoto
+        };
+        const btn = document.getElementById("saveBtn");
+        btn.disabled = true;
+        logDb.put(item).then(() => {
+            catches = catches.filter(c => c.id !== item.id).concat(item);
+            sortCatches();
+            forgetPhotoUrl(item.id);
+            keepStorage();
+            renderLogEntry();
+            goBack();
+        }).catch(() => {
+            btn.textContent = "Couldn't save. Try again";
+        }).then(() => { btn.disabled = false; setTimeout(() => { btn.textContent = "Save"; }, 2500); });
+    }
+
+    // Delete takes two taps, so a stray tap can't wipe a catch
+    function deleteCatch() {
+        const del = document.getElementById("deleteBtn");
+        if (!editing) return;
+        if (!del.classList.contains("armed")) {
+            del.classList.add("armed");
+            del.textContent = "Tap to confirm";
+            setTimeout(() => { del.classList.remove("armed"); del.textContent = "Delete"; }, 4000);
+            return;
+        }
+        const id = editing.id;
+        logDb.remove(id).then(() => {
+            catches = catches.filter(c => c.id !== id);
+            forgetPhotoUrl(id);
+            renderLogEntry();
+            goBack();
+        }).catch(() => { del.textContent = "Couldn't delete"; });
+    }
+
+    // ---- Backup file: the whole log (photos included) as one .json file ----
+    const blobToDataUrl = blob => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(blob);
+    });
+
+    async function exportLog() {
+        const msg = document.getElementById("backupMsg");
+        if (!catches.length) { msg.textContent = "Nothing to back up yet."; return; }
+        try {
+            const out = await Promise.all(catches.map(async c => ({ ...c, photo: c.photo ? await blobToDataUrl(c.photo) : null })));
+            const file = new Blob([JSON.stringify({ app: "SaltyRig", type: "catch-log", version: 1, exported: new Date().toISOString(), catches: out })], { type: "application/json" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(file);
+            link.download = `saltyrig-catch-log-${todayStr()}.json`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(link.href), 5000);
+            msg.textContent = `Saved a backup with ${catches.length} catch${catches.length === 1 ? "" : "es"}. Look for it in your Downloads.`;
+        } catch (err) {
+            msg.textContent = "Couldn't make the backup file.";
+        }
+    }
+
+    async function importLog(file) {
+        const msg = document.getElementById("backupMsg");
+        try {
+            const data = JSON.parse(await file.text());
+            if (!data || data.app !== "SaltyRig" || !Array.isArray(data.catches)) throw new Error("not a backup");
+            let count = 0;
+            for (const c of data.catches) {
+                if (!c || typeof c.id !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(c.date || "")) continue;
+                const photo = typeof c.photo === "string" && c.photo.startsWith("data:image/") ? await (await fetch(c.photo)).blob() : null;
+                await logDb.put({ ...c, photo });
+                forgetPhotoUrl(c.id);
+                count++;
+            }
+            await loadCatches();
+            renderLog();
+            msg.textContent = `Restored ${count} catch${count === 1 ? "" : "es"}.`;
+        } catch (err) {
+            msg.textContent = "That file isn't a SaltyRig backup.";
+        }
+    }
+
+    function setupLogControls() {
+        document.getElementById("prevMonth").onclick = () => setBitingMonth(bitingMonth - 1);
+        document.getElementById("nextMonth").onclick = () => setBitingMonth(bitingMonth + 1);
+        document.getElementById("saveBtn").onclick = saveCatch;
+        document.getElementById("deleteBtn").onclick = deleteCatch;
+        document.querySelectorAll("#fKept button").forEach(b => { b.onclick = () => setKept(b.dataset.v); });
+        ["fSpecies", "fDate"].forEach(id => document.getElementById(id).addEventListener("change", updateFormVerdict));
+        document.getElementById("fLength").addEventListener("input", updateFormVerdict);
+        document.getElementById("fPhoto").addEventListener("change", async e => {
+            const file = e.target.files && e.target.files[0];
+            e.target.value = "";
+            if (file) setFormPhoto(await shrinkPhoto(file));
+        });
+        document.getElementById("exportBtn").onclick = exportLog;
+        document.getElementById("importBtn").onclick = () => document.getElementById("importFile").click();
+        document.getElementById("importFile").addEventListener("change", e => {
+            const file = e.target.files && e.target.files[0];
+            e.target.value = "";
+            if (file) importLog(file);
         });
     }
 
@@ -1768,11 +2450,15 @@
         buildFilterBar();
         buildMenus();
         setupSwipe();
+        setupLogControls();
         registerServiceWorker();
         document.getElementById("fishEntryArt").innerHTML = fishArt("red-drum", "Redfish");
 
-        // Load the fish limits, then reopen whatever screen you were on if the page reloads
-        loadRegulations().then(() => showState(history.state));
+        // Load the limits, the calendar and your log, then reopen whatever screen you were on if the page reloads
+        Promise.all([loadRegulations(), loadCalendar(), loadCatches()]).then(() => {
+            renderBitingEntry();
+            showState(history.state);
+        });
     }
 
     // Shows the screen a history entry points to (used on reload and by the phone's back button)
@@ -1783,6 +2469,12 @@
             openFishList(false);
         } else if (state && state.view === "fish" && findFish(state.id)) {
             openFish(state.id, false);
+        } else if (state && state.view === "biting") {
+            openBiting(Number.isInteger(state.m) ? state.m : new Date().getMonth(), false);
+        } else if (state && state.view === "log") {
+            openLog(false);
+        } else if (state && state.view === "logForm") {
+            openCatchForm(state.id || null, {}, false);
         } else {
             showHome();
         }
@@ -1842,6 +2534,7 @@
             let back = "Back to Dashboard";
             if (prev && prev.type === "rigs" && type === "knots") back = `Back to ${appData.rigs[prev.index].title}`;
             else if (prev && prev.view === "fish" && findFish(prev.id)) back = `Back to ${findFish(prev.id).name}`;
+            else if (prev && prev.view === "biting") back = "Back to What's Biting";
             history.pushState({ type, index, step: startStep, back }, "");
         }
 
