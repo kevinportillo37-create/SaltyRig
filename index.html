@@ -460,14 +460,15 @@
                 title: "The Dropper Loop",
                 subtitle: "Category: Loop in the Middle of the Line",
                 materials: "Makes a loop that stands off the middle of the line, so you can hang extra hooks on a bottom rig.",
-                video: {url: "https://www.animatedknots.com/dropper-loop-knot", source: "Animated Knots", label: "Watch it tied (Animated Knots)"},
+                video: {url: "https://youtu.be/6vx4VOjvR-E", source: "YouTube", label: "Watch it tied (YouTube video)"},
                 steps: [
-                    "Make a big loop in the line where you want the dropper.",
-                    "Wrap one side of the loop around the other side 5 or 6 times, holding the loop open with a finger.",
-                    "Find the small hole in the middle of the twists.",
-                    "Push the bottom of the loop through that hole.",
-                    "Hold the new loop with a finger or your teeth so it can't slip back.",
-                    "Wet the knot, then pull both ends of the line apart until the twists gather and the loop stands off the line."
+                    "Make a loop about 4 inches long where you want the dropper. Let the two sides cross each other.",
+                    "Put a fingertip right where the two sides cross. Leave it there while you twist.",
+                    "Turn the loop over and around the line 6 to 8 times, like turning a jump rope. The twists build up on both sides of your fingertip.",
+                    "Take your fingertip out and push the bottom of the loop up through the hole it leaves.",
+                    "Hold the new loop with a finger or your teeth so it can't slip back out.",
+                    "Wet the twists, then slowly pull both ends of the line apart. The twists roll in toward the loop.",
+                    "Pull it tight. The loop should stand straight out from the line. If it lies flat, tie it again with more twists."
                 ]
             },
             {
@@ -1045,9 +1046,19 @@
             }
             return out;
         };
-        const hole = () => L("M12 112 H100", B) + L("M216 112 H308", B) + twist2(100, 140, 112) + twist2(176, 216, 112)
-            + L("M140 107 C150 100 166 100 176 107", T, 4) + L("M140 117 C150 124 166 124 176 117", B, 4);
         const dLegend = () => legend([[T, "loop"], [B, "main line"]]);
+        // Before twisting: the loop hangs below the line and its two sides cross at 160,114
+        const dCrossA = "M120 96 C140 96 150 104 160 114 C172 126 202 132 202 156 C202 172 184 180 160 180 C136 180 118 172 118 156 C118 140 134 132 142 128";
+        const dCrossB = "M142 128 C150 124 154 120 160 114 C170 104 180 96 200 96";
+        const dCross = () => L("M12 96 H120", B) + L(dCrossA, T) + O(dCrossB, T) + L("M200 96 H308", B);
+        // After twisting: twists on both sides of a small hole in the middle
+        const dTwists = (x1 = 96, x2 = 144) => { const r = 320 - x1, l = 320 - x2;
+            return L(`M12 96 H${x1 - 6} L${x1} 91`, B) + L(`M${r} 91 L${r + 6} 96 H308`, B) + twist2(x1, x2, 96) + twist2(l, r, 96); };
+        const lowArc = (x2 = 144) => L(`M${x2} 101 C${x2 + 8} 108 ${312 - x2} 108 ${320 - x2} 101`, T, 4);
+        const upArc = (x2 = 144) => O(`M${x2} 91 C${x2 + 8} 84 ${312 - x2} 84 ${320 - x2} 91`, B, 4);
+        const dHanging = "M96 101 C76 126 104 172 160 172 C216 172 244 126 224 101";
+        const dThrough = "M96 101 C80 126 96 156 122 156 C144 156 152 128 154 104 C152 70 146 40 160 40 C174 40 168 70 166 104 C168 128 176 156 198 156 C224 156 240 126 224 101";
+        const dPushed = () => dTwists() + lowArc() + O(dThrough, T) + upArc();
 
         // Double Uni: braid from the left, leader from the right, both tags orange
         const duLegend = () => legend([[BR, "braid"], [B, "leader"], [T, "tag ends"]]);
@@ -1191,20 +1202,20 @@
                 }
             ],
             "dropper-loop": [
-                () => dLegend() + L("M12 118 H128", B) + L("M128 118 C150 118 172 104 172 78 C172 50 140 50 140 78", T) + O("M140 78 C140 100 150 112 176 118", T) + L("M176 118 H308", B)
-                    + mv("M128 118 C150 118 172 104 172 78 C172 50 140 50 140 78 C140 100 150 112 176 118", [176, 118]) + draw.note(156, 40, "loop")
-                    + step("make a loop where you want the dropper"),
-                () => dLegend() + hole() + L("M150 107 C140 70 145 44 158 44 C171 44 176 70 166 107", T)
-                    + mv(zig(100, 216, 8, 104, 120).replace(/^M\S+ \S+/, "M100 120"), [216, 120]) + draw.note(158, 146, "small hole")
-                    + step("wrap one side around the other 5 or 6 times"),
-                () => dLegend() + hole() + L("M150 107 C140 70 145 44 158 44 C171 44 176 70 166 107", T) + draw.highlight(158, 112, 13)
-                    + lab(158, 150, "this hole") + step("find the small hole in the middle"),
-                () => dLegend() + hole() + O("M152 104 C146 140 148 172 158 172 C168 172 170 140 164 104", T) + mv("M158 52 L158 172", [158, 172])
-                    + step("push the loop through the hole"),
-                () => dLegend() + hole() + O("M152 104 C146 140 148 172 158 172 C168 172 170 140 164 104", T) + draw.finger(158, 172, 11)
-                    + draw.note(178, 160, "hold it here", "start") + step("hold the loop so it can't slip back"),
-                () => dLegend() + L("M12 110 H308", B) + L("M154 116 C140 140 146 168 158 168 C170 168 176 140 162 116", T) + knot(158, 110, 6, [T, B], 9)
-                    + mv("M80 110 H16", [16, 110], B) + mv("M236 110 H304", [304, 110], B) + draw.drops(214, 46) + step("wet it, pull both ends apart")
+                () => dLegend() + dCross() + mv(`${dCrossA} ${dCrossB.replace(/^M\S+ \S+/, "")}`, [200, 96]) + draw.highlight(160, 114, 12)
+                    + lab(160, 80, "sides cross") + draw.note(216, 170, "about 4 inches", "start") + step("make a loop, let the sides cross"),
+                () => dLegend() + dCross() + softFinger(160, 114, 11) + mv("M160 40 V109", [160, 109], COL.dark)
+                    + lab(160, 32, "fingertip here") + step("fingertip where the sides cross"),
+                () => dLegend() + dTwists() + L(dHanging, T) + lowArc() + upArc() + softFinger(160, 96, 9)
+                    + mv("M160 178 C276 178 276 36 160 36 C44 36 44 178 160 178", [160, 178]) + lab(282, 54, "6 to 8") + lab(282, 68, "times")
+                    + step("turn the loop over and around"),
+                () => dLegend() + dPushed() + mv("M160 168 V44", [160, 44]) + draw.highlight(160, 96, 15) + step("push the loop up through the hole"),
+                () => dLegend() + dPushed() + draw.finger(160, 40, 11) + draw.note(180, 44, "hold it here", "start") + step("hold the loop so it can't slip back"),
+                () => dLegend() + dTwists(118, 150) + lowArc(150)
+                    + O("M118 101 C108 118 126 130 140 130 C150 130 154 116 155 104 C153 76 148 46 160 46 C172 46 167 76 165 104 C166 116 170 130 180 130 C194 130 212 118 202 101", T)
+                    + upArc(150) + mv("M90 96 H16", [16, 96], B) + mv("M230 96 H304", [304, 96], B) + draw.drops(232, 46) + step("wet it, pull both ends apart"),
+                () => dLegend() + L("M12 96 H308", B) + L("M155 90 C142 62 146 36 160 36 C174 36 178 62 165 90", T) + knot(160, 96, 7, [T, B], 9)
+                    + draw.note(186, 52, "stands straight out", "start") + draw.check(236, 140) + step("pull tight, loop stands out")
             ],
             "snell-knot": [
                 () => legend([[T, "short end"], [B, "long side"]]) + sHook() + L("M207 150 V50", T) + L("M207 50 C212 26 262 18 312 18", B) + mv("M207 50 V150", [207, 150])
